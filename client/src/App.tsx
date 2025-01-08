@@ -1,21 +1,11 @@
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Footer from "./pages/Footer";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
+import NavBar from "./components/NavBar";
 import "./App.css";
 
 function App() {
   return (
     <>
       <section>
-        <About />
-        <Home />
-        <Contact />
-        <Login />
-        <Register />
-        <Footer />
+        <NavBar />
       </section>
     </>
   );

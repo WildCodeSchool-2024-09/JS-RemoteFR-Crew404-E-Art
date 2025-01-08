@@ -1,0 +1,53 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.navbar {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 1rem 1rem;
+  position: fixed;
+  width: 100%;
+  top: 0;
+  z-index: 10000000000;
+}
+.burger-menu {
+  display: none;
+  position: absolute;
+  top: 5px;
+  right: 15px;
+  background: none;
+  border: none;
+  cursor: pointer;
+  z-index: 100000000;
+}
+.navbar-links {
+  display: flex;
+  list-style: none;
+  gap: 1.5rem;
+  text-decoration: none;
+}
+.navbar-links a {
+  text-decoration: none;
+  color: black;
+  padding: 10px 20px;
+  background-color: #65ced4;
+  border-radius: 25px;
+  font-weight: bold;
+}
+.logo {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  max-width: 100px;
+  width: 100%;
+  border-radius: 50%;
+  z-index: 10000000000;
+}
+button {
+  background-color: #65ced4;
+  border: none;
+  font-weight: bold;
+}

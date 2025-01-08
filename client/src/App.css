@@ -1,3 +1,17 @@
+:root {
+  scroll-behavior: smooth;
+  --first-color: #f1dfe4;
+  --second-color: #65ced4;
+  --third-color: #feff9d;
+  --logo-color: #a88334;
+
+  --body-font: "Montserrat", sans-serif;
+  --h1-font-size: 2.25rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -5,12 +19,7 @@
 }
 
 body {
-  font-family: "Lato", sans-serif;
-  font-size: 16px;
-  line-height: 1.7;
-  margin: 0;
-}
-
-#root {
-  height: 100vh;
+  font-family: var(--body-font);
+  min-height: 100vh;
+  background-color: var(--first-color);
 }
