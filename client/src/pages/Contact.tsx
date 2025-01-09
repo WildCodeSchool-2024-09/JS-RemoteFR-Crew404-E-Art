@@ -29,31 +29,28 @@ function Contact() {
         ) : (
           <form onSubmit={handleSubmit}>
             <label className="contact_form" htmlFor="name">
-              {" "}
               Votre nom
             </label>
             <input
               type="text"
               id="name"
               name="name"
-              placeholder="Votre nom"
+              placeholder="Ali baba"
               required
             />
 
             <label className="contact_form" htmlFor="email">
-              {" "}
               Votre email
             </label>
             <input
               type="email"
               id="email"
               name="email"
-              placeholder="Votre email"
+              placeholder="ali@yahoo.com"
               required
             />
 
-            <label className="contact_form" htmlFor="message">
-              {" "}
+            <label className="contact_form" htmlFor="message...">
               Votre message
             </label>
             <textarea

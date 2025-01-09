@@ -3,6 +3,7 @@ import { Link, useLocation } from "react-router-dom";
 import logo_art from "../assets/images/logo_art.png";
 import menu from "../assets/images/menu.png";
 import "./NavBar.css";
+import use_icon from "../assets/images/user_icon.jpg";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -14,10 +15,10 @@ function NavBar() {
 
   return (
     <div>
-      {location.pathname === "/" && (
-        <img className="logo" src={logo_art} alt="La tête d'un objet d'art" />
-      )}
       <nav className="navbar">
+        {location.pathname === "/" && (
+          <img className="logo" src={logo_art} alt="La tête d'un objet d'art" />
+        )}
         <div className="navbar_header">
           <button
             className="burger-menu"
@@ -39,14 +40,14 @@ function NavBar() {
               Contact
             </Link>
           </li>
-          <li>
+          <li className="my_about">
             <Link to="/about" onClick={() => setIsMenuOpen(false)}>
               A propos
             </Link>
           </li>
           <li>
             <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-              Login
+              <img className="my_user" src={use_icon} alt="user icon" /> Login
             </Link>
           </li>
           <li>

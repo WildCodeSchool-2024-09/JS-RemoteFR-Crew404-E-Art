@@ -5,13 +5,14 @@
 }
 .navbar {
   display: flex;
-  justify-content: center;
+  justify-content: space-between;
   align-items: center;
   padding: 1rem 1rem;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 10000000000;
+  background-color: #feff9d;
 }
 .burger-menu {
   display: none;
@@ -32,22 +33,63 @@
 .navbar-links a {
   text-decoration: none;
   color: black;
-  padding: 10px 20px;
-  background-color: #65ced4;
-  border-radius: 25px;
   font-weight: bold;
 }
 .logo {
   position: absolute;
-  top: 10px;
+  top: 0px;
   left: 10px;
-  max-width: 100px;
+  max-width: 55px;
   width: 100%;
   border-radius: 50%;
   z-index: 10000000000;
 }
 button {
   background-color: #65ced4;
+  padding: 5px 10px;
+  border-radius: 25px;
   border: none;
   font-weight: bold;
+}
+.my_about {
+  margin-right: 70vh;
+}
+.my_user {
+  width: 20px;
+  height: 20px;
+}
+@media (max-width: 768px) {
+  .logo {
+    top: 17px;
+  }
+  .navbar {
+    justify-content: flex-end;
+    padding: 0.5rem 1rem;
+  }
+  .burger-menu {
+    display: block;
+  }
+  .navbar-links {
+    flex-direction: column;
+    position: absolute;
+    top: 60px;
+    left: 0;
+    width: 100%;
+    transform: translateY(-200%);
+    transition: transform 0.3s ease-in-out;
+    z-index: 1000000000;
+  }
+  .navbar-links.open {
+    transform: translateY(0);
+  }
+  .navbar-links li {
+    margin: 20px 5px 2px 3px;
+  }
+  .menu_icon {
+    width: 90px;
+    height: 90px;
+  }
+  .navbar {
+    padding: 2.5rem;
+  }
 }

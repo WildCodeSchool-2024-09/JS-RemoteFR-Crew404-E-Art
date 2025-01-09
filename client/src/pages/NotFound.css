@@ -3,6 +3,7 @@
   padding: 0;
   box-sizing: border-box;
 }
-p {
+h1,
+h2 {
   text-align: center;
 }

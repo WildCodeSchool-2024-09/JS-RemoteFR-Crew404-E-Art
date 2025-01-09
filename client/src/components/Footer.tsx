@@ -3,9 +3,9 @@ import "./Footer.css";
 function Footer() {
   return (
     <div>
-      <section>
+      <footer>
         <p>&copy; 2024 E-Art. All rights reserved. </p>
-      </section>
+      </footer>
     </div>
   );
 }

@@ -2,7 +2,7 @@ import "./Login.css";
 
 function Login() {
   return (
-    <div>
+    <div className="login">
       <section>
         <h1>Login</h1>
       </section>
