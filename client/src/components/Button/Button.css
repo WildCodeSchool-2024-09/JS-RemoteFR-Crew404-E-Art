@@ -1,0 +1,13 @@
+.main-button {
+  background-color: var(--second-color);
+  border: none;
+  padding: 15px 32px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 0.7rem;
+  box-shadow: 0 7px 10px #00000045;
+  border-radius: 15px;
+  text-transform: uppercase;
+  font-weight: bold;
+}

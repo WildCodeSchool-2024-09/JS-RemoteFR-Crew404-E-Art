@@ -1,14 +1,34 @@
 :root {
-  --background-color: #fafafa;
+  --first-color: #f1dfe4;
+  --second-color: #65ced4;
+  --third-color: #feff9d;
+  --logo-color: #a88334;
   --white: #fff;
+  --black: #000;
+
+  --body-font: "Montserrat", sans-serif;
+  --h1-font-size: 2.25rem;
+  --h2-font-size: 1.5rem;
+  --h3-font-size: 1.25rem;
+  --normal-font-size: 1rem;
+  --background-color: #fafafa;
 }
 
 * {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   box-sizing: border-box;
 }
 
 body {
-  background-color: var(--background-color);
+  background-color: var(--first-color);
+}
+
+.container-app {
+  width: 90%;
+  margin: 3rem auto 1rem auto;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
