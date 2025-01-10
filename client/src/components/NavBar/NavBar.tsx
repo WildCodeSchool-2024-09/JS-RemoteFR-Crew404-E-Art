@@ -3,7 +3,8 @@ import { Link } from "react-router-dom";
 import logo_art from "../../assets/images/logo_art.png";
 import menu from "../../assets/images/menu.png";
 import "./NavBar.css";
-import use_icon from "../../assets/images/user_icon.jpg";
+import { CircleUserRound } from "lucide-react";
+import Button from "../Button/Button";
 
 function NavBar() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
@@ -42,17 +43,16 @@ function NavBar() {
           </Link>
         </li>
       </ul>
-      <ul>
-        <li>
+      <ul className="navbar-links-connection">
+        <li className="login">
           <Link to="/login" onClick={() => setIsMenuOpen(false)}>
-            <img className="my_user" src={use_icon} alt="user icon" /> Login
+            <CircleUserRound size={28} />
+            Login
           </Link>
         </li>
         <li>
           <Link to="/register" onClick={() => setIsMenuOpen(false)}>
-            <button className="register_button" type="button">
-              REGISTER
-            </button>
+            <Button name="Register" />
           </Link>
         </li>
       </ul>

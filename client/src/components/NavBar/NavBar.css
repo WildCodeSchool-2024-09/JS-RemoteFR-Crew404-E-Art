@@ -104,6 +104,15 @@ button {
   box-shadow: 0 6px 10px #00000045;
 }
 
+.navbar a {
+  color: var(--black);
+  text-decoration: none;
+}
+
+.navbar ul li {
+  list-style-type: none;
+}
+
 .navbar img {
   width: 100px;
   height: 100px;
@@ -115,4 +124,24 @@ button {
 
 .navbar-links {
   display: flex;
+  width: 30%;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.navbar-links-connection {
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.login a {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-right: 1rem;
+}
+
+.login svg {
+  margin-right: 10px;
 }

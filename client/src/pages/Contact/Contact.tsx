@@ -1,6 +1,7 @@
 import { useState } from "react";
 
 import "./Contact.css";
+import Button from "../../components/Button/Button";
 
 function Contact() {
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -21,13 +22,13 @@ function Contact() {
   };
 
   return (
-    <div>
-      <section>
-        <h1>Contact me !</h1>
-        {isSubmitted ? (
-          <p>Merci ! Votre message a été envoyé.</p>
-        ) : (
-          <form onSubmit={handleSubmit}>
+    <section>
+      <h1>Contact me !</h1>
+      {isSubmitted ? (
+        <p>Merci ! Votre message a été envoyé.</p>
+      ) : (
+        <form className="form" onSubmit={handleSubmit}>
+          <div>
             <label className="contact_form" htmlFor="name">
               Votre nom
             </label>
@@ -38,7 +39,9 @@ function Contact() {
               placeholder="Ali baba"
               required
             />
+          </div>
 
+          <div>
             <label className="contact_form" htmlFor="email">
               Votre email
             </label>
@@ -49,7 +52,9 @@ function Contact() {
               placeholder="ali@yahoo.com"
               required
             />
+          </div>
 
+          <div>
             <label className="contact_form" htmlFor="message...">
               Votre message
             </label>
@@ -60,14 +65,12 @@ function Contact() {
               placeholder="Votre message"
               required
             />
+          </div>
 
-            <button className="envoyer" type="submit" disabled={isSubmitting}>
-              {isSubmitting ? "Envoi en cours..." : "Envoyer"}
-            </button>
-          </form>
-        )}
-      </section>
-    </div>
+          <Button name="Envoyer" />
+        </form>
+      )}
+    </section>
   );
 }
 
