@@ -4,12 +4,11 @@ import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import App from "./App";
 import Home from "./pages/Home/Home";
 
-import About from "./pages/About";
-import Contact from "./pages/Contact";
-import Home from "./pages/Home";
-import Login from "./pages/Login";
-import NotFound from "./pages/NotFound";
-import Register from "./pages/Register";
+import About from "./pages/About/About";
+import Contact from "./pages/Contact/Contact";
+import Login from "./pages/Login/Login";
+import NotFound from "./pages/NotFound/NotFound";
+import Register from "./pages/Register/Register";
 
 // Create router configuration with routes
 // You can add more routes as you build out your app!

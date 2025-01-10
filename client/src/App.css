@@ -3,6 +3,7 @@
   --second-color: #65ced4;
   --third-color: #feff9d;
   --logo-color: #a88334;
+  --white: #fff;
 
   --body-font: "Montserrat", sans-serif;
   --h1-font-size: 2.25rem;
@@ -20,7 +21,13 @@
 }
 
 body {
-  font-family: var(--body-font);
-  min-height: 100vh;
   background-color: var(--first-color);
+}
+
+.container-app {
+  width: 90%;
+  margin: 3rem auto 1rem auto;
+  display: flex;
+  height: 100vh;
+  flex-direction: column;
 }
