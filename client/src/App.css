@@ -1,5 +1,4 @@
 :root {
-  scroll-behavior: smooth;
   --first-color: #f1dfe4;
   --second-color: #65ced4;
   --third-color: #feff9d;
@@ -10,9 +9,11 @@
   --h2-font-size: 1.5rem;
   --h3-font-size: 1.25rem;
   --normal-font-size: 1rem;
+  --background-color: #fafafa;
 }
 
 * {
+  scroll-behavior: smooth;
   margin: 0;
   padding: 0;
   box-sizing: border-box;

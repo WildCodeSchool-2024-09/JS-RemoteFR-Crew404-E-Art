@@ -2,6 +2,7 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 
 import App from "./App";
+import Home from "./pages/Home/Home";
 
 import About from "./pages/About";
 import Contact from "./pages/Contact";
@@ -10,9 +11,13 @@ import Login from "./pages/Login";
 import NotFound from "./pages/NotFound";
 import Register from "./pages/Register";
 
+// Create router configuration with routes
+// You can add more routes as you build out your app!
+
 const router = createBrowserRouter([
   {
-    element: <App />,
+    path: "/", // The root path
+    element: <App />, // Renders the App component for the home page
     children: [
       {
         path: "/",
