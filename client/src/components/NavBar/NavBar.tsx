@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Link } from "react-router-dom";
 import logo_art from "../../assets/images/logo_art.png";
 import Button from "../Button/Button";
+import MenuBurger from "../Menu/MenuBurger";
 import "./NavBar.css";
 
 function NavBar() {
@@ -11,6 +12,7 @@ function NavBar() {
   return (
     <nav className="navbar">
       <img className="logo" src={logo_art} alt="La tête d'un objet d'art" />
+      <MenuBurger />
       <ul className={`navbar-links ${isMenuOpen ? "open" : ""}`}>
         <li>
           <Link to="/" onClick={() => setIsMenuOpen(false)}>
