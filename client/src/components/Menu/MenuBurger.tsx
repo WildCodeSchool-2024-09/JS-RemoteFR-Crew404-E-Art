@@ -1,18 +1,29 @@
+import { useState } from "react";
 import { slide as Menu } from "react-burger-menu";
+import { Link } from "react-router-dom";
 import "./MenuBurger.css";
 
 function MenuBurger() {
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+
+  const handleStateChange = (state: { isOpen: boolean }) => {
+    setIsOpen(state.isOpen);
+  };
+
+  const closeMenu = () => {
+    setIsOpen(false);
+  };
   return (
-    <Menu right>
-      <a id="home" className="menu-item" href="/">
+    <Menu right width={"50%"} isOpen={isOpen} onStateChange={handleStateChange}>
+      <Link to="/" className="menu-item" onClick={closeMenu}>
         Home
-      </a>
-      <a id="about" className="menu-item" href="/about">
+      </Link>
+      <Link to="/about" className="menu-item" onClick={closeMenu}>
         About
-      </a>
-      <a id="contact" className="menu-item" href="/contact">
+      </Link>
+      <Link to="/contact" className="menu-item" onClick={closeMenu}>
         Contact
-      </a>
+      </Link>
     </Menu>
   );
 }
