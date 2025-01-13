@@ -145,3 +145,11 @@ button {
 .login svg {
   margin-right: 10px;
 }
+@media (max-width: 768px) {
+  .navbar-links {
+    display: none;
+  }
+  .navbar-links-connection {
+    display: none;
+  }
+}

@@ -1,57 +1,35 @@
-import { useState } from "react";
+import { CircleUserRound } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo_art from "../../assets/images/logo_art.png";
-import menu from "../../assets/images/menu.png";
-import "./NavBar.css";
-import { CircleUserRound } from "lucide-react";
 import Button from "../Button/Button";
+import MenuBurger from "../Menu/MenuBurger";
+import "./NavBar.css";
 
 function NavBar() {
-  const [isMenuOpen, setIsMenuOpen] = useState(false);
-
-  const toggleMenu = () => {
-    setIsMenuOpen(!isMenuOpen);
-  };
-
   return (
     <nav className="navbar">
       <img className="logo" src={logo_art} alt="La tête d'un objet d'art" />
-      <div className="navbar_header">
-        <button
-          className="burger-menu"
-          type="button"
-          onClick={toggleMenu}
-          aria-label="Toggle menu"
-        >
-          <img src={menu} alt="Menu burger" className="menu_icon" />
-        </button>
-      </div>
-      <ul className={`navbar-links ${isMenuOpen ? "open" : ""}`}>
+      <MenuBurger />
+      <ul className="navbar-links">
         <li>
-          <Link to="/" onClick={() => setIsMenuOpen(false)}>
-            Home
-          </Link>
+          <Link to="/">Home</Link>
         </li>
         <li>
-          <Link to="/contact" onClick={() => setIsMenuOpen(false)}>
-            Contact
-          </Link>
+          <Link to="/contact">Contact</Link>
         </li>
         <li className="my_about">
-          <Link to="/about" onClick={() => setIsMenuOpen(false)}>
-            A propos
-          </Link>
+          <Link to="/about">A propos</Link>
         </li>
       </ul>
       <ul className="navbar-links-connection">
         <li className="login">
-          <Link to="/login" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/login">
             <CircleUserRound size={28} />
             Login
           </Link>
         </li>
         <li>
-          <Link to="/register" onClick={() => setIsMenuOpen(false)}>
+          <Link to="/register">
             <Button name="Register" />
           </Link>
         </li>

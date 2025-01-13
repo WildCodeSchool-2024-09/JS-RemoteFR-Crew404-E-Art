@@ -1,3 +1,5 @@
+@import url("https://fonts.googleapis.com/css2?family=Irish+Grover&family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap");
+
 :root {
   --first-color: #f1dfe4;
   --second-color: #65ced4;
@@ -15,6 +17,7 @@
 }
 
 * {
+  font-family: var(--body-font);
   scroll-behavior: smooth;
   margin: 0;
   padding: 0;
@@ -29,6 +32,6 @@ body {
   width: 90%;
   margin: 3rem auto 1rem auto;
   display: flex;
-  height: 100vh;
+  min-height: 100vh;
   flex-direction: column;
 }
