@@ -10,7 +10,8 @@ function Contact() {
         <div>
           <label className="contact_form" htmlFor="name">
             Votre nom
-          </label>
+          </label>{" "}
+          <br />
           <input
             type="text"
             id="name"
@@ -18,12 +19,13 @@ function Contact() {
             placeholder="Ali baba"
             required
           />
-        </div>
-
+        </div>{" "}
+        <br />
         <div>
           <label className="contact_form" htmlFor="email">
             Votre email
-          </label>
+          </label>{" "}
+          <br />
           <input
             type="email"
             id="email"
@@ -31,12 +33,13 @@ function Contact() {
             placeholder="ali@yahoo.com"
             required
           />
-        </div>
-
+        </div>{" "}
+        <br />
         <div>
           <label className="contact_form" htmlFor="message...">
             Votre message
-          </label>
+          </label>{" "}
+          <br />
           <textarea
             name="message"
             id="message"
@@ -45,8 +48,10 @@ function Contact() {
             required
           />
         </div>
-
-        <Button name="Envoyer" />
+        <div className="contact_button">
+          {" "}
+          <Button name="Envoyer" />{" "}
+        </div>
       </form>
     </section>
   );
