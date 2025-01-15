@@ -3,6 +3,30 @@
   padding: 0;
   box-sizing: border-box;
 }
-h1 {
-  text-align: center;
+.login_title {
+  margin-right: 25rem;
+}
+.login_input {
+  width: 30rem;
+  background-color: var(--third-color);
+  padding: 10px;
+}
+.login_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
+  background-color: var(--second-color);
+}
+@media (max-width: 768px) {
+  .login_input {
+    width: 10rem;
+  }
+  .login_title {
+    margin-top: 5rem;
+    margin-left: 5.5rem;
+  }
+  .login_button {
+    width: 10rem;
+  }
 }
