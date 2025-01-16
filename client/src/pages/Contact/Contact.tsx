@@ -4,15 +4,16 @@ import "./Contact.css";
 function Contact() {
   return (
     <section>
-      <h1>Contact me !</h1>
+      <h1 className="contact_title">Contact me !</h1>
 
-      <form className="form">
+      <form className="form_contact">
         <div>
           <label className="contact_form" htmlFor="name">
             Votre nom
           </label>{" "}
           <br />
           <input
+            className="contact_input"
             type="text"
             id="name"
             name="name"
@@ -27,6 +28,7 @@ function Contact() {
           </label>{" "}
           <br />
           <input
+            className="contact_input"
             type="email"
             id="email"
             name="email"
@@ -41,6 +43,7 @@ function Contact() {
           </label>{" "}
           <br />
           <textarea
+            className="contact_textarea"
             name="message"
             id="message"
             rows={7}
