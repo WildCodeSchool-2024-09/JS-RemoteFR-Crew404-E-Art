@@ -3,6 +3,38 @@
   padding: 0;
   box-sizing: border-box;
 }
-h1 {
-  text-align: center;
+.register_title {
+  margin-right: 24rem;
+  margin-top: 5rem;
+}
+.register_input {
+  width: 30rem;
+  background-color: var(--third-color);
+  padding: 10px;
+}
+.register_button {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  width: 30rem;
+  background-color: var(--second-color);
+}
+.register_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+@media (max-width: 768px) {
+  .register_input {
+    width: 10rem;
+  }
+  .register_title {
+    margin-top: 5rem;
+    margin-left: 5.5rem;
+  }
+  .register_button {
+    width: 10rem;
+  }
 }
