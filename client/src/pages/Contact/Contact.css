@@ -40,4 +40,7 @@
   .contact_title {
     margin-top: 5rem;
   }
+  .contact_button {
+    width: 10rem;
+  }
 }
