@@ -1,57 +1,18 @@
 import Thumbnail from "../../components/Thumbnail/Thumbnail";
 import "./Home.css";
 import { Link } from "react-router-dom";
+import fakeArtworks from "../../services/fakeArtworks";
 
-const fakeArtworks = [
-  {
-    id: 1,
-    img: "https://picsum.photos/300?random=1",
-    title: "Artwork 1",
-    author: "Artist 1",
-    year: 2021,
-  },
-  {
-    id: 2,
-    img: "https://picsum.photos/1200?random=2",
-    title: "Artwork 2",
-    author: "Artist 1",
-    year: 2024,
-  },
-  {
-    id: 3,
-    img: "https://picsum.photos/780?random=3",
-    title: "Artwork 3",
-    author: "Artist 2",
-    year: 2023,
-  },
-  {
-    id: 4,
-    img: "https://picsum.photos/300?random=4",
-    title: "Artwork 1",
-    author: "Artist 1",
-    year: 2021,
-  },
-  {
-    id: 5,
-    img: "https://picsum.photos/1200?random=5",
-    title: "Artwork 2",
-    author: "Artist 1",
-    year: 2024,
-  },
-  {
-    id: 6,
-    img: "https://picsum.photos/780?random=6",
-    title: "Artwork 3",
-    author: "Artist 2",
-    year: 2023,
-  },
-];
 function Home() {
   return (
     <section>
       <div className="container">
         {fakeArtworks.map((artwork) => (
-          <Link key={artwork.id} to="/artwork-page/:id">
+          <Link
+            key={artwork.id}
+            to={`/artwork-page/${artwork.id}`}
+            className="thumbnail-link"
+          >
             <Thumbnail
               img={artwork.img}
               title={artwork.title}

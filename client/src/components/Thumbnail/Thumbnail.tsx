@@ -13,7 +13,7 @@ function Thumbnail({ img, title, author, year }: ThumbnailProps) {
       <div className="overlay">
         <img src={img} alt={`${title}-${author}`} />
       </div>
-      <div className="info">
+      <div className="info-thumbnail">
         <h2>{title}</h2>
         <p>{author}</p>
         <p>{year}</p>

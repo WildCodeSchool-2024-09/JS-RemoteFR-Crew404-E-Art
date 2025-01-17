@@ -8,6 +8,10 @@
   cursor: pointer;
 }
 
+.thumbnail:hover {
+  transform: translateY(-5px);
+}
+
 .overlay {
   max-height: 300px;
   overflow: hidden;
@@ -19,21 +23,21 @@
   object-fit: cover;
 }
 
-.info {
+.info-thumbnail {
   background-color: var(--white);
   padding: 16px;
   text-align: left;
   color: black;
 }
 
-.info h2 {
+.info-thumbnail h2 {
   font-size: 1.2em;
   filter: drop-shadow(0 5px 0.2rem #00000045);
   margin-bottom: 8px;
   text-align: left;
 }
 
-.info p {
+.info-thumbnail p {
   margin: 4px 0;
   font-size: 1em;
 }
