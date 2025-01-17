@@ -24,6 +24,12 @@ function MenuBurger() {
       <Link to="/contact" className="menu-item" onClick={closeMenu}>
         Contact
       </Link>
+      <Link to="/login" className="menu-item" onClick={closeMenu}>
+        Login
+      </Link>
+      <Link to="/register" className="menu-item" onClick={closeMenu}>
+        Register
+      </Link>
     </Menu>
   );
 }

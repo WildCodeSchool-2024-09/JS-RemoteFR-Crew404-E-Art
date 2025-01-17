@@ -5,6 +5,7 @@ import App from "./App";
 import Home from "./pages/Home/Home";
 
 import About from "./pages/About/About";
+import ArtworkPage from "./pages/ArtworkPage/ArtworkPage";
 import Contact from "./pages/Contact/Contact";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
@@ -41,6 +42,10 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFound />,
+      },
+      {
+        path: "/artwork-page/:id",
+        element: <ArtworkPage />,
       },
     ],
   },

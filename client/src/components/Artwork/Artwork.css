@@ -1,0 +1,61 @@
+.artwork {
+  background-color: var(--white);
+  box-shadow: 0px 6px 10px #00000045;
+  border-radius: 10px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  cursor: pointer;
+  margin-top: 5rem;
+  margin-left: 20rem;
+  border: solid 1px black;
+  width: 50rem;
+}
+
+.overlay img {
+  width: 100%;
+  height: auto;
+  object-fit: cover;
+}
+
+.info {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--white);
+  padding: 16px;
+  color: black;
+}
+
+.info h2 {
+  font-size: 1.5em;
+  filter: drop-shadow(0 5px 0.2rem #00000045);
+  margin-bottom: 8px;
+  text-align: left;
+}
+
+.info p {
+  margin: 4px 0;
+  font-size: 1em;
+}
+.year_medium {
+  margin-top: 40px;
+}
+.my_button {
+  border: none;
+  background-color: var(--first-color);
+}
+.my_art {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+}
+@media (max-width: 768px) {
+  .my_art {
+    flex-direction: column;
+  }
+  .artwork {
+    margin-left: 0px;
+    width: 100%;
+    margin-top: 1rem;
+  }
+}
