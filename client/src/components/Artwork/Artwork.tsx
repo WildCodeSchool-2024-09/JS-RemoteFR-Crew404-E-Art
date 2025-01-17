@@ -1,53 +1,44 @@
+import { ChevronLeft } from "lucide-react";
+import { useLoaderData } from "react-router-dom";
 import { Link } from "react-router-dom";
 import "./Artwork.css";
 
-type ArtworkProps = {
+type Artwork = {
   img: string;
   title: string;
   author: string;
-  dimension: number;
+  dimension: string;
   description: string;
   year: number;
   medium: string;
 };
 
-function Artwork({
-  img,
-  title,
-  author,
-  dimension,
-  description,
-  year,
-  medium,
-}: ArtworkProps) {
+function Artwork() {
+  const { artwork } = useLoaderData() as { artwork: Artwork };
   return (
     <div className="my_art">
-      <Link to="/">
-        <div>
-          <button className="my_button" type="button">
-            &#10096; Back to Gallery
-          </button>
-        </div>
+      <Link to="/" className="my_button">
+        <ChevronLeft />
+        Back to Gallery
       </Link>
       <section className="artwork">
-        <div className="overlay">
-          <img src={img} alt={`${title}-${author}`} />
-        </div>
+        <img src={artwork.img} alt={`${artwork.title}-${artwork.author}`} />
+
         <div className="info">
           <div>
-            <h2>{title}</h2>
+            <h2>{artwork.title}</h2>
             <h3>Artist</h3>
-            <p>{author}</p>
+            <p>{artwork.author}</p>
             <h3>Dimension</h3>
-            <p>{dimension}</p>
+            <p>{artwork.dimension}</p>
             <h3>Description</h3>
-            <p>{description}</p>
+            <p>{artwork.description}</p>
           </div>
           <div className="year_medium">
             <h3>Year</h3>
-            <p>{year}</p>
+            <p>{artwork.year}</p>
             <h3>Medium</h3>
-            <p>{medium}</p>
+            <p>{artwork.medium}</p>
           </div>
         </div>
       </section>

@@ -1,18 +1,22 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import fakeArtworks from "./services/fakeArtworks";
 
 import App from "./App";
-import Home from "./pages/Home/Home";
-
 import About from "./pages/About/About";
-import ArtworkPage from "./pages/ArtworkPage/ArtworkPage";
 import Contact from "./pages/Contact/Contact";
+/**
+ * Pages
+ */
+import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
 import Register from "./pages/Register/Register";
 
-// Create router configuration with routes
-// You can add more routes as you build out your app!
+/**
+ * Components
+ */
+import Artwork from "./components/Artwork/Artwork";
 
 const router = createBrowserRouter([
   {
@@ -45,7 +49,19 @@ const router = createBrowserRouter([
       },
       {
         path: "/artwork-page/:id",
-        element: <ArtworkPage />,
+        element: <Artwork />,
+        loader: async ({ params }) => {
+          const artwork = fakeArtworks.find(
+            (artwork) => artwork.id === Number.parseInt(params.id ?? "0"),
+          );
+
+          if (artwork) {
+            return {
+              artwork,
+            };
+          }
+          return null;
+        },
       },
     ],
   },
