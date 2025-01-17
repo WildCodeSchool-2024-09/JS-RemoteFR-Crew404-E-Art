@@ -30,9 +30,6 @@ function MenuBurger() {
       <Link to="/register" className="menu-item" onClick={closeMenu}>
         Register
       </Link>
-      <Link to="/artworkPage" className="menu-item" onClick={closeMenu}>
-        ArtworkPage
-      </Link>
     </Menu>
   );
 }

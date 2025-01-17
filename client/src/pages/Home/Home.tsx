@@ -1,5 +1,6 @@
 import Thumbnail from "../../components/Thumbnail/Thumbnail";
 import "./Home.css";
+import { Link } from "react-router-dom";
 
 const fakeArtworks = [
   {
@@ -50,13 +51,14 @@ function Home() {
     <section>
       <div className="container">
         {fakeArtworks.map((artwork) => (
-          <Thumbnail
-            key={artwork.id}
-            img={artwork.img}
-            title={artwork.title}
-            author={artwork.author}
-            year={artwork.year}
-          />
+          <Link key={artwork.id} to="/artwork-page/:id">
+            <Thumbnail
+              img={artwork.img}
+              title={artwork.title}
+              author={artwork.author}
+              year={artwork.year}
+            />
+          </Link>
         ))}
       </div>
     </section>

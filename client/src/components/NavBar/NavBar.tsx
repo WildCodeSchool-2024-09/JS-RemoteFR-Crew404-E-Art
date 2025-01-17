@@ -20,9 +20,6 @@ function NavBar() {
         <li className="my_about">
           <Link to="/about">A propos</Link>
         </li>
-        <li className="my_about">
-          <Link to="/artworkPage">ArtworkPage</Link>
-        </li>
       </ul>
       <ul className="navbar-links-connection">
         <li className="login">

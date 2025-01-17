@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import "./Artwork.css";
 
 type ArtworkProps = {
@@ -21,13 +22,13 @@ function Artwork({
 }: ArtworkProps) {
   return (
     <div className="my_art">
-      <div>
-        <button className="my_button" type="button">
-          {" "}
-          &#10096; Back to Gallery{" "}
-        </button>{" "}
-      </div>
-
+      <Link to="/">
+        <div>
+          <button className="my_button" type="button">
+            &#10096; Back to Gallery
+          </button>
+        </div>
+      </Link>
       <section className="artwork">
         <div className="overlay">
           <img src={img} alt={`${title}-${author}`} />
