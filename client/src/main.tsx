@@ -11,6 +11,7 @@ import Contact from "./pages/Contact/Contact";
 import Home from "./pages/Home/Home";
 import Login from "./pages/Login/Login";
 import NotFound from "./pages/NotFound/NotFound";
+import Profil from "./pages/Profil/Profil";
 import Register from "./pages/Register/Register";
 
 /**
@@ -46,6 +47,10 @@ const router = createBrowserRouter([
       {
         path: "*",
         element: <NotFound />,
+      },
+      {
+        path: "/profil",
+        element: <Profil />,
       },
       {
         path: "/artwork-page/:id",
