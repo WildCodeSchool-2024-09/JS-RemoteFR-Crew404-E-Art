@@ -3,7 +3,11 @@
   padding: 0;
   box-sizing: border-box;
 }
-h1,
-h2 {
+.error_title {
   text-align: center;
+  margin-top: 10rem;
+}
+.error_second_title {
+  text-align: center;
+  margin-top: 4rem;
 }
