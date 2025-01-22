@@ -37,7 +37,7 @@ function Login() {
         </div>
         <br />
 
-        <Button name="login" />
+        <Button name="login" type="submit" />
       </form>
     </section>
   );
