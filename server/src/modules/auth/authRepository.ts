@@ -36,14 +36,6 @@ class authRepository {
     // Return the first row of the result, which represents the item
     return rows[0] as User;
   }
-
-  async readAll() {
-    // Execute the SQL SELECT query to retrieve all items from the "item" table
-    const [rows] = await databaseClient.query<Rows>("select * from user");
-
-    // Return the array of items
-    return rows as User[];
-  }
 }
 
 export default new authRepository();
