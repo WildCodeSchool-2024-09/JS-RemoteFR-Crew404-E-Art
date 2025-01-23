@@ -17,6 +17,7 @@ router.post("/api/items", itemActions.add);
 /**login / register */
 /**router.post("/api/login",);*/
 router.post("/api/register", authActions.register);
+router.post("/api/login", authActions.login);
 
 /* ************************************************************************* */
 
