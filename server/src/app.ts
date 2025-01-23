@@ -26,8 +26,7 @@ if (process.env.CLIENT_URL != null) {
 
 // If you need to allow extra origins, you can add something like this:
 
-/*
-app.use(
+/*app.use(
   cors({
     origin: ["http://mysite.com", "http://another-domain.com"],
   }),
@@ -52,7 +51,7 @@ app.use(
 
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
-// app.use(express.json());
+app.use(express.json());
 // app.use(express.urlencoded());
 // app.use(express.text());
 // app.use(express.raw());
