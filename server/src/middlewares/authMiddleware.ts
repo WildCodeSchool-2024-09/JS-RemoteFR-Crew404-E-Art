@@ -14,7 +14,7 @@ const authMiddleware = {
       res.status(401).json({ message: "Invalid email or password" });
       return;
     }
-    user;
+    req.user = user;
     next();
   },
 };

@@ -31,7 +31,7 @@ const login: RequestHandler = async (req, res, next) => {
     }
 
     // Respond with the items in JSON format
-    res.status(200).json(user);
+    res.status(200).json(req.user);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

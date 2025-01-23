@@ -9,7 +9,13 @@ declare global {
       //
       // user?: { ... }
       /* ************************************************************************* */
-      message: string;
+      user?: {
+        id: number;
+        name: string;
+        email: string;
+        password: string;
+        role_id: number;
+      };
     }
   }
 }
