@@ -18,6 +18,7 @@ import Register from "./pages/Register/Register";
  * Components
  */
 import Artwork from "./components/Artwork/Artwork";
+import AddArtwork from "./pages/AddArtwork/AddArtwork";
 
 const router = createBrowserRouter([
   {
@@ -45,12 +46,12 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "*",
-        element: <NotFound />,
-      },
-      {
         path: "/profil",
         element: <Profil />,
+      },
+      {
+        path: "/artwork-page",
+        element: <AddArtwork />,
       },
       {
         path: "/artwork-page/:id",
@@ -67,6 +68,10 @@ const router = createBrowserRouter([
           }
           return null;
         },
+      },
+      {
+        path: "*",
+        element: <NotFound />,
       },
     ],
   },

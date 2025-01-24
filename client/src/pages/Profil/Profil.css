@@ -39,6 +39,16 @@
   justify-content: space-between;
   gap: 0.5rem;
 }
+
+/** disabled input css */
+.profil_form input:disabled {
+  background-color: #d3d3d3;
+}
+
+.profil_button_update {
+  margin-top: 2rem;
+}
+
 @media (max-width: 768px) {
   .profil_input {
     width: 18rem;

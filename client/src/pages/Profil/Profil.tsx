@@ -17,7 +17,6 @@ function Profil() {
             name="name"
             value="joy"
             checked
-            required
             className="profil_input"
           />
         </div>
@@ -32,9 +31,8 @@ function Profil() {
             id="email"
             name="email"
             value="luke@yahoo.com"
-            checked
-            required
             className="profil_input"
+            disabled
           />
         </div>
         <br />
@@ -49,7 +47,6 @@ function Profil() {
               id="password"
               name="password"
               placeholder="************"
-              required
               className="password_input"
             />
           </div>
@@ -64,7 +61,6 @@ function Profil() {
               id="confirm_password"
               name="confirm_password"
               placeholder="************"
-              required
               className="password_input"
             />
           </div>
@@ -73,10 +69,10 @@ function Profil() {
         <div className="profil_button">
           <span>I'm an artist</span>
           <div>
-            <Button name="Invitation request" />
+            <Button name="Invitation request" type="button" />
           </div>
-          <div>
-            <Button name="Update profil" />{" "}
+          <div className="profil_button_update">
+            <Button name="Update profil" type="button" />
           </div>
         </div>
       </form>

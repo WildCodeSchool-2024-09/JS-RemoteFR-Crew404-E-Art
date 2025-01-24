@@ -3,14 +3,13 @@ import "./Contact.css";
 
 function Contact() {
   return (
-    <section>
+    <section className="contact">
       <h1 className="contact_title">Contact me !</h1>
-
       <form className="form_contact">
         <div>
           <label className="contact_form" htmlFor="name">
             Votre nom
-          </label>{" "}
+          </label>
           <br />
           <input
             className="contact_input"
@@ -20,12 +19,12 @@ function Contact() {
             placeholder="Ali baba"
             required
           />
-        </div>{" "}
+        </div>
         <br />
         <div>
           <label className="contact_form" htmlFor="email">
             Votre email
-          </label>{" "}
+          </label>
           <br />
           <input
             className="contact_input"
@@ -35,12 +34,12 @@ function Contact() {
             placeholder="ali@yahoo.com"
             required
           />
-        </div>{" "}
+        </div>
         <br />
         <div>
           <label className="contact_form" htmlFor="message...">
             Votre message
-          </label>{" "}
+          </label>
           <br />
           <textarea
             className="contact_textarea"
@@ -51,10 +50,8 @@ function Contact() {
             required
           />
         </div>
-        <div className="contact_button">
-          {" "}
-          <Button name="Envoyer" />{" "}
-        </div>
+        <br />
+        <Button name="Envoyer" />
       </form>
     </section>
   );
