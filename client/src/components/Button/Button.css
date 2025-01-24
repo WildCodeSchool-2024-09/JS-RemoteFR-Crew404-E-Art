@@ -13,6 +13,10 @@
   width: 100%;
 }
 
+.white {
+  background-color: white;
+}
+
 .main-button:hover {
   cursor: pointer;
 }
