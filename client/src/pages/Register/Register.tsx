@@ -67,7 +67,7 @@ function Register() {
         </div>
         <br />
 
-        <Button name="register" />
+        <Button name="register" type="submit" />
       </form>
     </section>
   );

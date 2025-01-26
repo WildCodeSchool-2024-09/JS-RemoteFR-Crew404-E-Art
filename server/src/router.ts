@@ -15,11 +15,13 @@ router.post("/api/items", itemActions.add);
 
 import authMiddleware from "./middlewares/authMiddleware";
 import authActions from "./modules/auth/authActions";
+import oeuvreActions from "./modules/oeuvre/oeuvreActions";
 
 /**login / register */
 
 router.post("/api/register", authActions.register);
 router.post("/api/login", authMiddleware.isRegistered, authActions.login);
+router.post("/api/oeuvre", oeuvreActions.oeuvre);
 
 /* ************************************************************************* */
 
