@@ -7,6 +7,7 @@ CREATE TABLE user (
   name VARCHAR(255) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
+  confirm_password VARCHAR(255) NOT NULL,
 
   role_id INT UNSIGNED NOT NULL DEFAULT 2,
   CONSTRAINT fk_user_role
@@ -40,10 +41,10 @@ CREATE TABLE user_oeuvre (
 INSERT INTO role(id, name) VALUES
   (1, "admin"),
   (2, "user");
-insert into user(id, name, email, password, role_id)
+insert into user(id, name, email, password, confirm_password, role_id)
 values
-  (1, "anthou", "anthou@yahoo.com", "word",1),
-  (2, "john", "aliko@yahoo.com", "break",2);
+  (1, "anthou", "anthou@yahoo.com", "word", "word", 1),
+  (2, "john", "aliko@yahoo.com", "break", "break", 2);
 INSERT INTO oeuvre(id, image, title, dimension, description, year, medium, user_id)
 VALUES
 (1, "../public/assets/images/Starry_Night.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889-06-01", "Oil on canvas", 1),

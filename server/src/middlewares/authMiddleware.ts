@@ -1,21 +1,34 @@
-import type { NextFunction, Request, Response } from "express";
+import * as argon2 from "argon2";
+import type { RequestHandler } from "express";
 import authRepository from "../modules/auth/authRepository";
 
-const authMiddleware = {
-  async isRegistered(req: Request, res: Response, next: NextFunction) {
-    const user = await authRepository.read(req.body.email);
+const isRegistered: RequestHandler = async (req, res, next) => {
+  const user = await authRepository.read(req.body.email);
 
-    if (!user) {
-      res.status(401).json({ message: "Invalid email or password" });
-      return;
-    }
+  if (!user) {
+    res.status(401).json({ message: "Invalid email or password" });
+    return;
+  }
 
-    if (user.password !== req.body.password) {
-      res.status(401).json({ message: "Invalid email or password" });
-      return;
-    }
+  if (await argon2.verify(user.password, req.body.password)) {
     req.user = user;
     next();
-  },
+  } else {
+    res.status(401).json({ message: "Invalid email or password" });
+    return;
+  }
 };
-export default authMiddleware;
+
+const hashPwd: RequestHandler = async (req, res, next) => {
+  try {
+    const hash = await argon2.hash(req.body.password);
+    req.body.password = hash;
+    req.body.confirm_password = hash;
+    next();
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export default { isRegistered, hashPwd };
