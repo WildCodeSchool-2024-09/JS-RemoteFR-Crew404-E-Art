@@ -19,9 +19,10 @@ const register: RequestHandler = async (req, res, next) => {
 const login: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
-      const { password, ...user } = req.user;
+      const { password, confirm_password, ...userWithoutSensitiveInfo } =
+        req.user;
 
-      res.status(200).json(req.user);
+      res.status(200).json(userWithoutSensitiveInfo);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
