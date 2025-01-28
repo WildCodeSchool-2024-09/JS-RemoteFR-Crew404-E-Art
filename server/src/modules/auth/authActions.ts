@@ -18,20 +18,12 @@ const register: RequestHandler = async (req, res, next) => {
 
 const login: RequestHandler = async (req, res, next) => {
   try {
-    const user = await authRepository.read(req.body.email);
+    if (req.user) {
+      const { password, confirm_password, ...userWithoutSensitiveInfo } =
+        req.user;
 
-    if (!user) {
-      res.status(401).json({ message: "Invalid email or password" });
-      return;
+      res.status(200).json(userWithoutSensitiveInfo);
     }
-
-    if (user.password !== req.body.password) {
-      res.status(401).json({ message: "Invalid email or password" });
-      return;
-    }
-
-    // Respond with the items in JSON format
-    res.status(200).json(req.user);
   } catch (err) {
     // Pass any errors to the error-handling middleware
     next(err);

@@ -14,7 +14,16 @@ declare global {
         name: string;
         email: string;
         password: string;
-        role_id: number;
+        confirm_password: string;
+      };
+      oeuvre?: {
+        id: number;
+        image: string;
+        title: string;
+        dimension: string;
+        description: string;
+        year: number;
+        medium: string;
       };
     }
   }

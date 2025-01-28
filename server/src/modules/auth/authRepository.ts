@@ -7,7 +7,7 @@ type User = {
   name: string;
   email: string;
   password: string;
-  role_id: number;
+  confirm_password: string;
 };
 
 class authRepository {
@@ -16,8 +16,8 @@ class authRepository {
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "insert into user (name, email, password, role_id) values (?, ?, ?, ?)",
-      [user.name, user.email, user.password, user.role_id],
+      "insert into user (name, email, password, confirm_password ) values (?, ?, ?, ?)",
+      [user.name, user.email, user.password, user.confirm_password],
     );
 
     // Return the ID of the newly inserted item
