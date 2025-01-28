@@ -1,12 +1,14 @@
 import type { RequestHandler } from "express";
-
-// Import access to data
 import oeuvreRepository from "./oeuvreRepository";
 
 // The B of BREAD - Browse (Read All) operation
-const oeuvre: RequestHandler = async (req, res, next) => {
+const add: RequestHandler = async (req, res, next) => {
   try {
-    const oeuvre = await oeuvreRepository.create(req.body);
+    const artwork = JSON.parse(req.body.artwork);
+    const image = req.body.image;
+    const addArtwork = { ...artwork, image };
+
+    const oeuvre = await oeuvreRepository.create(addArtwork);
 
     if (!oeuvre) {
       res.status(401).json({ message: "Ceci n'est pas un oeuvre " });
@@ -21,4 +23,4 @@ const oeuvre: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { oeuvre };
+export default { add };

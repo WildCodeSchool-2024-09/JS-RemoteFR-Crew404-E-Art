@@ -19,7 +19,7 @@ class oeuvreRepository {
   async create(oeuvre: Omit<Oeuvre, "id">) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "insert into oeuvre (image, title, dimension, description, year, medium, user_id) values (?, ?, ?,?,?,?,2)",
+      "insert into oeuvre (image, title, dimension, description, year, medium, user_id) values (?, ?, ?, ?, ?, ?, ?)",
       [
         oeuvre.image,
         oeuvre.title,
@@ -27,7 +27,7 @@ class oeuvreRepository {
         oeuvre.description,
         oeuvre.year,
         oeuvre.medium,
-        oeuvre.user_id,
+        1, // a défaut de tester pour l'instant avec un vrai user, je met "oeuvre.user_id" = 1 pour l'instant, cette valeur changera avec la connexion de celui ci.
       ],
     );
 

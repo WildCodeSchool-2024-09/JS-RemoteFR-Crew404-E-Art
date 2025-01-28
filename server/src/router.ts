@@ -14,6 +14,7 @@ router.get("/api/items/:id", itemActions.read);
 router.post("/api/items", itemActions.add);
 
 import authMiddleware from "./middlewares/authMiddleware";
+import oeuvreMiddleware from "./middlewares/oeuvreMiddleware";
 import authActions from "./modules/auth/authActions";
 import oeuvreActions from "./modules/oeuvre/oeuvreActions";
 
@@ -21,7 +22,11 @@ import oeuvreActions from "./modules/oeuvre/oeuvreActions";
 
 router.post("/api/register", authMiddleware.hashPwd, authActions.register);
 router.post("/api/login", authMiddleware.isRegistered, authActions.login);
-router.post("/api/oeuvre", oeuvreActions.oeuvre);
+router.post(
+  "/api/oeuvre",
+  oeuvreMiddleware.uploads.single("file"),
+  oeuvreActions.add,
+);
 
 /* ************************************************************************* */
 

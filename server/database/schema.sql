@@ -23,7 +23,7 @@ CREATE TABLE oeuvre (
   year DATE NOT NULL,
   medium VARCHAR(255) NOT NULL,
 
-  user_id INT UNSIGNED NOT NULL DEFAULT 2,
+  user_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_oeuvre_user
   FOREIGN KEY(user_id) REFERENCES user(id)
 );
