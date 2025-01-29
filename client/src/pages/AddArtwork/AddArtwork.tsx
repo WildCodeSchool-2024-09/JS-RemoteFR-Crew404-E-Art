@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import "./AddArtwork.css";
+import axios from "axios";
 import { Upload } from "lucide-react";
 import Button from "../../components/Button/Button";
 
@@ -42,17 +43,25 @@ function AddArtwork() {
     setArtwork({ ...artwork, [name]: value });
   };
 
-  const handleSubmit = (event: React.FormEvent) => {
+  const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData();
 
     if (file) {
-      formData.append("file", file);
+      formData.append("upload", file);
     }
     formData.append("artwork", JSON.stringify(artwork));
 
     console.info("Submitting:", artwork);
     console.info("File:", file);
+
+    // je vais utiliser axios pour envoyer les données au serveur
+
+    const response = await axios.post(
+      `${import.meta.env.VITE_API_URL}/api/oeuvre`,
+      formData,
+    );
+    console.info("Response:", response.data);
   };
 
   return (

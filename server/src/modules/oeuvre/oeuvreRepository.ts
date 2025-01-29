@@ -27,7 +27,7 @@ class oeuvreRepository {
         oeuvre.description,
         oeuvre.year,
         oeuvre.medium,
-        1, // a défaut de tester pour l'instant avec un vrai user, je met "oeuvre.user_id" = 1 pour l'instant, cette valeur changera avec la connexion de celui ci.
+        1,
       ],
     );
 
