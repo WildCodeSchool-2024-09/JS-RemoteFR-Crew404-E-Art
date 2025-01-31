@@ -21,17 +21,10 @@ const app = express();
 import cors from "cors";
 
 if (process.env.CLIENT_URL != null) {
-  app.use(cors({ origin: [process.env.CLIENT_URL] }));
+  app.use(cors({ origin: [process.env.CLIENT_URL], credentials: true }));
 }
 
 // If you need to allow extra origins, you can add something like this:
-
-/*app.use(
-  cors({
-    origin: ["http://mysite.com", "http://another-domain.com"],
-  }),
-);
-*/
 
 // With ["http://mysite.com", "http://another-domain.com"]
 // to be replaced with an array of your trusted origins
@@ -49,6 +42,10 @@ if (process.env.CLIENT_URL != null) {
 // 3. `express.text()`: Parses requests with raw text data.
 // 4. `express.raw()`: Parses requests with raw binary data.
 
+//J'ai fait l'importation de cookie parser pour pouvoir lire les cookies quand ils me seront envoyés
+
+import cookieParser from "cookie-parser";
+app.use(cookieParser());
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
 app.use(express.json());

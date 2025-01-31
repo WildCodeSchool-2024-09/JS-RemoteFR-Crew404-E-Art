@@ -1,4 +1,6 @@
 import express from "express";
+import type { Request, Response } from "express";
+import jwtMiddleware from "./middlewares/jwtMiddleware";
 
 const router = express.Router();
 
@@ -24,7 +26,7 @@ router.post("/api/register", authMiddleware.hashPwd, authActions.register);
 router.post("/api/login", authMiddleware.isRegistered, authActions.login);
 router.post(
   "/api/oeuvre",
-  oeuvreMiddleware.uploads.single("file"),
+  oeuvreMiddleware.uploads.single("upload"),
   oeuvreActions.add,
 );
 
