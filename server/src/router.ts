@@ -9,26 +9,44 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Define item-related routes
-import itemActions from "./modules/item/itemActions";
+// import itemActions from "./modules/item/itemActions";
 
-router.get("/api/items", itemActions.browse);
-router.get("/api/items/:id", itemActions.read);
-router.post("/api/items", itemActions.add);
+// router.get("/api/items", itemActions.browse);
+// router.get("/api/items/:id", itemActions.read);
+// router.post("/api/items", itemActions.add);
 
+/* ************************************************************************* */
+// Middleware
+/* ************************************************************************* */
 import authMiddleware from "./middlewares/authMiddleware";
 import oeuvreMiddleware from "./middlewares/oeuvreMiddleware";
+
+/* ************************************************************************* */
+// Actions
+/* ************************************************************************* */
 import authActions from "./modules/auth/authActions";
 import oeuvreActions from "./modules/oeuvre/oeuvreActions";
 
-/**login / register */
-
-router.post("/api/register", authMiddleware.hashPwd, authActions.register);
-router.post("/api/login", authMiddleware.isRegistered, authActions.login);
+/**
+ * Login, Register, Logout
+ */
+router.post("/api/register", authMiddleware.hashPassword, authActions.register);
 router.post(
-  "/api/oeuvre",
-  oeuvreMiddleware.uploads.single("upload"),
-  oeuvreActions.add,
+  "/api/login",
+  authMiddleware.isRegistered,
+  authMiddleware.comparePassword,
+  authActions.login,
 );
+router.post("/api/logout", authActions.logout);
+
+// Ici, nous allons faire un "mur" pour les routes qui nécessitent une authentification
+// A partir de ce point, toutes les routes nécessiteront un token JWT valide
+router.use(jwtMiddleware.verifyToken);
+
+/**
+ * oeuvre
+ */
+router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
 
 /* ************************************************************************* */
 

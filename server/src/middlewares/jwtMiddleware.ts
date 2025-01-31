@@ -1,19 +1,48 @@
-import jwt from "jsonwebtoken";
 import "dotenv/config";
+import type { RequestHandler } from "express";
+import jwt from "jsonwebtoken";
+import authRepository from "../modules/auth/authRepository";
 
-// ici j'ai crée dans ma variable d'environnement un mot de passe  pour mon encodage de mon token
-const JWT_SECRET = process.env.JWT_SECRET as string;
+// Vérification immédiate de la variable d'environnement
+const APP_SECRET = process.env.APP_SECRET;
+if (!APP_SECRET) {
+  throw new Error("APP_SECRET is not defined");
+}
 
-// ici je crée mon token avec le payload de mon utilisateur grace au package jsonwebtoken.
+// Interface pour le payload JWT
+interface JwtPayload {
+  email: string;
+}
 
-const createToken = (payload: object) => {
-  return jwt.sign(payload, JWT_SECRET, { expiresIn: "1h" });
+// Fonction pour créer un token JWT
+const createToken = (payload: object): string => {
+  return jwt.sign(payload, APP_SECRET, { expiresIn: "1h" });
 };
 
-// ici je vérifie mon token avec le mot de passe de mon utilisateur grace au package jsonwebtoken.
-const verifyToken = (token: string) => {
-  const decoded = jwt.verify(token, JWT_SECRET);
-  return decoded;
+// Middleware de vérification du token JWT
+const verifyToken: RequestHandler = async (req, res, next) => {
+  const token = req.cookies?.jwtToken;
+  if (!token) {
+    res.status(401).json({ message: "Unauthorized" });
+    return;
+  }
+
+  try {
+    const decoded = jwt.verify(token, APP_SECRET) as JwtPayload;
+    const user = await authRepository.read(decoded.email);
+
+    if (!user) {
+      res.status(401).json({ message: "Unauthorized" });
+      return;
+    }
+
+    req.user = user;
+    next();
+  } catch (error) {
+    console.error("JWT Verification Error:", error);
+    res.status(401).json({ message: "Invalid or expired token" });
+  }
 };
 
+// Export des fonctions sous forme d'objet structuré
 export default { createToken, verifyToken };

@@ -1,5 +1,6 @@
 // Load the express module to create a web application
 
+import cookieParser from "cookie-parser";
 import express from "express";
 
 const app = express();
@@ -44,7 +45,6 @@ if (process.env.CLIENT_URL != null) {
 
 //J'ai fait l'importation de cookie parser pour pouvoir lire les cookies quand ils me seront envoyés
 
-import cookieParser from "cookie-parser";
 app.use(cookieParser());
 // Uncomment one or more of these options depending on the format of the data sent by your client:
 
@@ -78,8 +78,17 @@ import path from "node:path";
 
 const publicFolderPath = path.join(__dirname, "../../server/public");
 
+// Nous allons mettre en place un dossier pour les images uploadées
+const uploadsFolderPath = path.join(__dirname, "../../server/uploads");
+
 if (fs.existsSync(publicFolderPath)) {
   app.use(express.static(publicFolderPath));
+}
+
+if (fs.existsSync(uploadsFolderPath)) {
+  // Nous allons servir les fichiers statiques du dossier uploads préfixés
+  // par /uploads
+  app.use("/uploads", express.static(uploadsFolderPath));
 }
 
 // Serve client resources

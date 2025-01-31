@@ -12,14 +12,12 @@ type User = {
 
 class authRepository {
   // The C of CRUD - Create operation
-
   async create(user: Omit<User, "id">) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
-      "insert into user (name, email, password, confirm_password ) values (?, ?, ?, ?)",
-      [user.name, user.email, user.password, user.confirm_password],
+      "insert into user (name, email, password ) values (?, ?, ?)",
+      [user.name, user.email, user.password],
     );
-
     // Return the ID of the newly inserted item
     return result.insertId;
   }

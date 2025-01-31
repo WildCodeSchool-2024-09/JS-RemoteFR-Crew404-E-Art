@@ -2,17 +2,30 @@ CREATE TABLE role (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR (255) NOT NULL
 );
+# Nous avons trois rôles: admin, user et artist
+INSERT INTO role(name) VALUES
+  ("admin"),
+  ("user"),
+  ("artist");
+
 CREATE TABLE user (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
-  name VARCHAR(255) NOT NULL,
+  name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
   password VARCHAR(255) NOT NULL,
-  confirm_password VARCHAR(255) NOT NULL,
-
-  role_id INT UNSIGNED NOT NULL DEFAULT 2,
+  role_id INT UNSIGNED DEFAULT 2,
   CONSTRAINT fk_user_role
   FOREIGN KEY (role_id) REFERENCES role(id)
 );
+
+# User 1 = email: admin@eart.com, password: password
+# User 2 = email: user@eart.com, password: password
+# User 3 = email: artist@eart.com, password: password
+insert into user(name, email, password, role_id)
+values
+  ("admin", "admin@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$z+/VAgYwr9Txeqaob/tpPw$u+QnxJz7Nourod50tgGLJnbkxFtlwZ9kZCeOuKMqsVU", 1),
+  ("user", "user@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$qGPJ6S562z9Q5QdRofVwHA$A8FfFR/AHnEwcacjigTg3e+8Ii4Jwpz8SAwMuuWLBnU", 2),
+  ("artist", "artist@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$6ZC41p/mMjkv7qFP+O4PdA$TKImI/0VBwUgEGBljVf09QXd/NnH3Cgb28vFsFLSQgo", 3);
 
 CREATE TABLE oeuvre (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -22,13 +35,15 @@ CREATE TABLE oeuvre (
   description TEXT NOT NULL,
   year VARCHAR(4) NOT NULL,
   medium VARCHAR(255) NOT NULL,
-
   user_id INT UNSIGNED NOT NULL,
   CONSTRAINT fk_oeuvre_user
   FOREIGN KEY(user_id) REFERENCES user(id)
 );
 
-
+INSERT INTO oeuvre(image, title, dimension, description, year, medium, user_id)
+VALUES
+("../public/assets/images/Starry_Night.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
+("../public/assets/images/mountain.jpg", "Go wild", "4000 cm * 2670 cm", "Go wild is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 3);
 
 CREATE TABLE user_oeuvre (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -38,23 +53,8 @@ CREATE TABLE user_oeuvre (
   FOREIGN KEY (user_id) REFERENCES user(id),
   FOREIGN KEY (oeuvre_id) REFERENCES oeuvre(id)
 );
-INSERT INTO role(id, name) VALUES
-  (1, "admin"),
-  (2, "user");
-insert into user(id, name, email, password, confirm_password, role_id)
-values
-  (1, "anthou", "anthou@yahoo.com", "word", "word", 1),
-  (2, "john", "aliko@yahoo.com", "break", "break", 2);
-INSERT INTO oeuvre(id, image, title, dimension, description, year, medium, user_id)
+
+INSERT INTO user_oeuvre(user_id, oeuvre_id)
 VALUES
-(1, "../public/assets/images/Starry_Night.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
-(2, "../public/assets/images/mountain.jpg", "Go wild", "4000 cm * 2670 cm", "Go wild is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 1);
-
-INSERT INTO user_oeuvre(id, user_id, oeuvre_id)
-VALUES
-(1, 1, 1),
-(2, 1, 2);
-
-  
-
-
+(3, 1),
+(3, 2);

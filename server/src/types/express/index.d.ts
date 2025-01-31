@@ -9,13 +9,16 @@ declare global {
       //
       // user?: { ... }
       /* ************************************************************************* */
+      // Add user property to Request
       user?: {
         id: number;
         name: string;
         email: string;
         password: string;
-        confirm_password: string;
+        role_id?: number;
       };
+
+      // Add oeuvre property to Request
       oeuvre?: {
         id: number;
         image: string;

@@ -26,9 +26,6 @@
 }
 
 @media (max-width: 768px) {
-  .login_input {
-    width: 10rem;
-  }
   .login_title {
     margin-top: 5rem;
     margin-left: 20rem;
