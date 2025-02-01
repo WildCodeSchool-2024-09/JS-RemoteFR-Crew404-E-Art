@@ -1,8 +1,9 @@
-import { useEffect, useState } from "react";
-import "./AddArtwork.css";
-import axios from "axios";
 import { Upload } from "lucide-react";
+import { useEffect, useState } from "react";
 import Button from "../../components/Button/Button";
+import { api } from "../../services/api";
+import "./AddArtwork.css";
+import { failureToast, successToast } from "../../services/toasts";
 
 function AddArtwork() {
   const [artwork, setArtwork] = useState({
@@ -40,28 +41,38 @@ function AddArtwork() {
     event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
   ) => {
     const { name, value } = event.target;
-    setArtwork({ ...artwork, [name]: value });
+    setArtwork((prev) => ({ ...prev, [name]: value }));
   };
 
   const handleSubmit = async (event: React.FormEvent) => {
     event.preventDefault();
     const formData = new FormData();
 
-    if (file) {
-      formData.append("upload", file);
+    try {
+      if (file) {
+        formData.append("upload", file);
+      }
+      formData.append("artwork", JSON.stringify(artwork));
+
+      // Envoi des données via API
+      const response = await api.post("/api/oeuvre", formData);
+      if (response.status === 201) {
+        successToast("Artwork added successfully");
+
+        // Réinitialisation du formulaire et de l'image
+        setArtwork({
+          title: "",
+          year: "",
+          medium: "",
+          dimension: "",
+          description: "",
+        });
+        setFile(null);
+        setPreview(null);
+      }
+    } catch (error) {
+      failureToast("An error occurred while adding the artwork");
     }
-    formData.append("artwork", JSON.stringify(artwork));
-
-    console.info("Submitting:", artwork);
-    console.info("File:", file);
-
-    // je vais utiliser axios pour envoyer les données au serveur
-
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/oeuvre`,
-      formData,
-    );
-    console.info("Response:", response.data);
   };
 
   return (
@@ -109,6 +120,7 @@ function AddArtwork() {
             id="title"
             placeholder="Title of artwork"
             onChange={handleChange}
+            value={artwork.title}
             className="form-input"
           />
 
@@ -123,6 +135,7 @@ function AddArtwork() {
                 id="year"
                 max={new Date().getFullYear()}
                 onChange={handleChange}
+                value={artwork.year}
                 className="form-input"
                 placeholder={`${new Date().getFullYear()}`}
               />
@@ -136,6 +149,7 @@ function AddArtwork() {
                 name="medium"
                 id="medium"
                 onChange={handleChange}
+                value={artwork.medium}
                 className="form-input"
                 placeholder="Oil on canvas"
               />
@@ -150,6 +164,7 @@ function AddArtwork() {
             name="dimension"
             id="dimension"
             onChange={handleChange}
+            value={artwork.dimension}
             className="form-input"
             placeholder="30x40 cm"
           />
@@ -162,6 +177,7 @@ function AddArtwork() {
             name="description"
             id="description"
             onChange={handleChange}
+            value={artwork.description}
             className="form-textarea"
           />
 

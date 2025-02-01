@@ -1,6 +1,7 @@
-import axios from "axios";
 import { useState } from "react";
 import Button from "../../components/Button/Button";
+import { api } from "../../services/api";
+import { failureToast, successToast } from "../../services/toasts";
 import "./Login.css";
 
 function Login() {
@@ -20,13 +21,14 @@ function Login() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/login`,
-      login,
-      { withCredentials: true },
-    );
-
-    return response.data;
+    try {
+      const response = await api.post("/api/login", login);
+      if (response.status === 200) {
+        successToast("You are now logged in");
+      }
+    } catch (error) {
+      failureToast("Login failed");
+    }
   };
 
   return (

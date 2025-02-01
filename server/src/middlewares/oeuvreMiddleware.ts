@@ -6,13 +6,13 @@ const configMulter = multer.diskStorage({
     cb(null, "./uploads");
   },
   filename: (req, file, cb) => {
-    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 99999999)}`;
+    const uniqueSuffix = `${Date.now()}-${Math.round(Math.random() * 1e9)}`;
 
     req.body.image = uniqueSuffix + path.extname(file.originalname);
     cb(null, uniqueSuffix + path.extname(file.originalname));
   },
 });
 
-const uploads = multer({ storage: configMulter });
+const uploads = multer({ storage: configMulter }).single("upload");
 
 export default { uploads };

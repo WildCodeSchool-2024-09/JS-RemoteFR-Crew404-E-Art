@@ -1,5 +1,6 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
+import { ToastContainer } from "react-toastify";
 import fakeArtworks from "./services/fakeArtworks";
 
 import App from "./App";
@@ -14,6 +15,7 @@ import NotFound from "./pages/NotFound/NotFound";
 import Profil from "./pages/Profil/Profil";
 import Register from "./pages/Register/Register";
 
+import { StrictMode } from "react";
 /**
  * Components
  */
@@ -79,5 +81,21 @@ const router = createBrowserRouter([
 
 const rootElement = document.getElementById("root");
 if (rootElement != null) {
-  ReactDOM.createRoot(rootElement).render(<RouterProvider router={router} />);
+  ReactDOM.createRoot(rootElement).render(
+    <StrictMode>
+      <RouterProvider router={router} />
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={false}
+        closeOnClick={false}
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+        theme="colored"
+      />
+    </StrictMode>,
+  );
 }

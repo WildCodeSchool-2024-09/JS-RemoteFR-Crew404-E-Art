@@ -2,28 +2,27 @@ import * as argon2 from "argon2";
 import type { RequestHandler } from "express";
 import authRepository from "../modules/auth/authRepository";
 
+/**
+ * Le middleware isRegistered vérifie si l'utilisateur est enregistré dans la base de données.
+ * Si l'utilisateur n'est pas enregistré, il renvoie une erreur 401.
+ */
 const isRegistered: RequestHandler = async (req, res, next) => {
   const user = await authRepository.read(req.body.email);
-
   if (!user) {
     res.status(401).json({ message: "Invalid email or password" });
     return;
   }
-
-  if (await argon2.verify(user.password, req.body.password)) {
-    req.user = user;
-    next();
-  } else {
-    res.status(401).json({ message: "Invalid email or password" });
-    return;
-  }
+  req.user = user;
+  next();
 };
 
-const hashPwd: RequestHandler = async (req, res, next) => {
+/**
+ * Le middleware hashPassword utilise l'algorithme Argon2 pour hacher le mot de passe de l'utilisateur.
+ */
+const hashPassword: RequestHandler = async (req, res, next) => {
   try {
     const hash = await argon2.hash(req.body.password);
     req.body.password = hash;
-    req.body.confirm_password = hash;
     next();
   } catch (error) {
     console.error(error);
@@ -31,4 +30,25 @@ const hashPwd: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { isRegistered, hashPwd };
+/**
+ * Le middleware comparePassword utilise l'algorithme Argon2 pour comparer le mot de passe de l'utilisateur avec le mot de passe haché stocké dans la base de données.
+ */
+const comparePassword: RequestHandler = async (req, res, next) => {
+  if (!req.user) {
+    res.status(401).json({ message: "Invalid email or password" });
+    return;
+  }
+
+  try {
+    if (await argon2.verify(req.user.password, req.body.password)) {
+      next();
+    } else {
+      res.status(401).json({ message: "Invalid email or password" });
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+export default { isRegistered, hashPassword, comparePassword };
