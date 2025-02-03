@@ -1,6 +1,7 @@
 import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
+import { AuthProvider } from "./context/AuthContext";
 import fakeArtworks from "./services/fakeArtworks";
 
 import App from "./App";
@@ -83,19 +84,21 @@ const rootElement = document.getElementById("root");
 if (rootElement != null) {
   ReactDOM.createRoot(rootElement).render(
     <StrictMode>
-      <RouterProvider router={router} />
-      <ToastContainer
-        position="top-right"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="colored"
-      />
+      <AuthProvider>
+        <RouterProvider router={router} />
+        <ToastContainer
+          position="top-right"
+          autoClose={5000}
+          hideProgressBar={false}
+          newestOnTop={false}
+          closeOnClick={false}
+          rtl={false}
+          pauseOnFocusLoss
+          draggable
+          pauseOnHover
+          theme="colored"
+        />
+      </AuthProvider>
     </StrictMode>,
   );
 }

@@ -3,12 +3,15 @@ import Button from "../../components/Button/Button";
 import { api } from "../../services/api";
 import { failureToast, successToast } from "../../services/toasts";
 import "./Login.css";
+import { useAuth } from "../../context/AuthContext";
 
 function Login() {
   const [login, setlogin] = useState({
     email: "",
     password: "",
   });
+
+  const { handleLogin } = useAuth();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
@@ -23,6 +26,7 @@ function Login() {
 
     try {
       const response = await api.post("/api/login", login);
+      handleLogin(response.data);
       if (response.status === 200) {
         successToast("You are now logged in");
       }
