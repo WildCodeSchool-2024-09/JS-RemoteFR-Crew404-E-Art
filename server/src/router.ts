@@ -1,5 +1,4 @@
 import express from "express";
-import type { Request, Response } from "express";
 import jwtMiddleware from "./middlewares/jwtMiddleware";
 
 const router = express.Router();
@@ -37,14 +36,17 @@ router.post(
   authMiddleware.comparePassword,
   authActions.login,
 );
-router.post("/api/logout", authActions.logout);
+
+router.get("/api/oeuvres", oeuvreActions.browse);
+router.get("/api/oeuvres/:id", oeuvreActions.read);
 
 // Ici, nous allons faire un "mur" pour les routes qui nécessitent une authentification
 // A partir de ce point, toutes les routes nécessiteront un token JWT valide
 router.use(jwtMiddleware.verifyToken);
 
+router.post("/api/logout", authActions.logout);
 /**
- * oeuvre
+ * oeuvres
  */
 router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
 

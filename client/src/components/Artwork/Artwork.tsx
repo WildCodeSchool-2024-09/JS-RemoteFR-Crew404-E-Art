@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import "./Artwork.css";
 
 type Artwork = {
-  img: string;
+  image: string;
   title: string;
   author: string;
   dimension: string;
@@ -14,7 +14,8 @@ type Artwork = {
 };
 
 function Artwork() {
-  const { artwork } = useLoaderData() as { artwork: Artwork };
+  const artwork = useLoaderData() as Artwork;
+
   return (
     <div className="my_art">
       <Link to="/" className="my_button">
@@ -22,7 +23,10 @@ function Artwork() {
         Back to Gallery
       </Link>
       <section className="artwork">
-        <img src={artwork.img} alt={`${artwork.title}-${artwork.author}`} />
+        <img
+          src={`${import.meta.env.VITE_API_URL}/uploads/${artwork.image}`}
+          alt={`${artwork.title}-${artwork.author}`}
+        />
 
         <div className="info">
           <div>

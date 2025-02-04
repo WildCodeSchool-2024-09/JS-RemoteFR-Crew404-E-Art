@@ -53,6 +53,14 @@ app.use(express.json());
 // app.use(express.text());
 // app.use(express.raw());
 
+// Nous allons mettre en place un dossier pour les images uploadées
+const uploadsFolderPath = path.join(__dirname, "../../server/uploads");
+if (fs.existsSync(uploadsFolderPath)) {
+  // Nous allons servir les fichiers statiques du dossier uploads préfixés
+  // par /uploads
+  app.use("/uploads", express.static(uploadsFolderPath));
+}
+
 /* ************************************************************************* */
 
 // Import the API router
@@ -78,17 +86,8 @@ import path from "node:path";
 
 const publicFolderPath = path.join(__dirname, "../../server/public");
 
-// Nous allons mettre en place un dossier pour les images uploadées
-const uploadsFolderPath = path.join(__dirname, "../../server/uploads");
-
 if (fs.existsSync(publicFolderPath)) {
   app.use(express.static(publicFolderPath));
-}
-
-if (fs.existsSync(uploadsFolderPath)) {
-  // Nous allons servir les fichiers statiques du dossier uploads préfixés
-  // par /uploads
-  app.use("/uploads", express.static(uploadsFolderPath));
 }
 
 // Serve client resources

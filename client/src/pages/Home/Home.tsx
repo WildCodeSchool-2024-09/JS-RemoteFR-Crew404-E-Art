@@ -1,20 +1,28 @@
+import { Link, useLoaderData } from "react-router-dom";
 import Thumbnail from "../../components/Thumbnail/Thumbnail";
 import "./Home.css";
-import { Link } from "react-router-dom";
-import fakeArtworks from "../../services/fakeArtworks";
+
+type Artwork = {
+  id: number;
+  image: string;
+  title: string;
+  author: string;
+  year: number;
+};
 
 function Home() {
+  const artworks = useLoaderData() as Artwork[];
   return (
     <section>
       <div className="container">
-        {fakeArtworks.map((artwork) => (
+        {artworks.map((artwork: Artwork) => (
           <Link
             key={artwork.id}
             to={`/artwork-page/${artwork.id}`}
             className="thumbnail-link"
           >
             <Thumbnail
-              img={artwork.img}
+              img={artwork.image}
               title={artwork.title}
               author={artwork.author}
               year={artwork.year}

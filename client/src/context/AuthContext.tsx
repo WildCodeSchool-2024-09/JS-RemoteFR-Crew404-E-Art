@@ -15,6 +15,7 @@ type ChildrenType = {
 type User = {
   id: number;
   email: string;
+  name: string;
 };
 
 export function AuthProvider({ children }: ChildrenType) {
