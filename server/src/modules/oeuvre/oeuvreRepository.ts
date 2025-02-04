@@ -16,7 +16,7 @@ type Oeuvre = {
 class oeuvreRepository {
   // The C of CRUD - Create operation
 
-  async create(oeuvre: Omit<Oeuvre, "id">) {
+  async create(oeuvre: Omit<Oeuvre, "id">, userId: number) {
     // Execute the SQL INSERT query to add a new item to the "item" table
     const [result] = await databaseClient.query<Result>(
       "insert into oeuvre (image, title, dimension, description, year, medium, user_id) values (?, ?, ?, ?, ?, ?, ?)",
@@ -27,7 +27,7 @@ class oeuvreRepository {
         oeuvre.description,
         oeuvre.year,
         oeuvre.medium,
-        1,
+        userId,
       ],
     );
 
@@ -37,15 +37,23 @@ class oeuvreRepository {
 
   // The Rs of CRUD - Read operations
 
-  async read(image: string) {
+  async read(id: number) {
     // Execute the SQL SELECT query to retrieve a specific item by its ID
     const [rows] = await databaseClient.query<Rows>(
-      "select * from oeuvre where image = ?",
-      [image],
+      "select oeuvre.*, user.name as author from oeuvre inner join user on oeuvre.user_id = user.id where oeuvre.id = ?",
+      [id],
     );
 
     // Return the first row of the result, which represents the item
     return rows[0] as Oeuvre;
+  }
+
+  async readAll() {
+    const [rows] = await databaseClient.query<Rows>(
+      "select oeuvre.*, user.name as author from oeuvre inner join user on oeuvre.user_id = user.id",
+    );
+
+    return rows as Oeuvre[];
   }
 }
 

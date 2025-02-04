@@ -1,4 +1,4 @@
-import { CircleUserRound } from "lucide-react";
+import { CircleUserRound, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo_art from "../../assets/images/logo_art.png";
 import Button from "../Button/Button";
@@ -28,10 +28,10 @@ function NavBar() {
 
       {user ? (
         <ul className="navbar-links-connection">
-          <li className="login">
-            <p>Hello {user.email}</p>
+          <li className="logout-button">
+            <Link to="/profil">Hello {user.name}</Link>
             <button type="button" onClick={handleLogout}>
-              Logout
+              <LogOut size={28} />
             </button>
           </li>
         </ul>

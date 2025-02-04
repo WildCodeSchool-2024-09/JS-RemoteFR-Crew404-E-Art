@@ -1,9 +1,12 @@
-import axios from "axios";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import { api } from "../../services/api";
+import { failureToast, successToast } from "../../services/toasts";
 import "./Register.css";
 
 function Register() {
+  const nav = useNavigate();
   const [password, setPassword] = useState("");
   const [isValid, setIsValid] = useState(false);
 
@@ -34,11 +37,13 @@ function Register() {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
 
-    const response = await axios.post(
-      `${import.meta.env.VITE_API_URL}/api/register`,
-      register,
-    );
-    return response.data;
+    try {
+      await api.post("/api/register", register);
+      successToast("Inscription réussie");
+      nav("/login");
+    } catch (error) {
+      failureToast("Oups, une erreur est survenue");
+    }
   };
 
   return (

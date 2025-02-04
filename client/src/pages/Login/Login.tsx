@@ -1,4 +1,5 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import { api } from "../../services/api";
 import { failureToast, successToast } from "../../services/toasts";
@@ -6,6 +7,7 @@ import "./Login.css";
 import { useAuth } from "../../context/AuthContext";
 
 function Login() {
+  const nav = useNavigate();
   const [login, setlogin] = useState({
     email: "",
     password: "",
@@ -29,6 +31,7 @@ function Login() {
       handleLogin(response.data);
       if (response.status === 200) {
         successToast("You are now logged in");
+        nav("/");
       }
     } catch (error) {
       failureToast("Login failed");

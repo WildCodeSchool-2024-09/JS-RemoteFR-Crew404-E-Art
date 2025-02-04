@@ -23,9 +23,9 @@ CREATE TABLE user (
 # User 3 = email: artist@eart.com, password: password
 insert into user(name, email, password, role_id)
 values
-  ("admin", "admin@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$z+/VAgYwr9Txeqaob/tpPw$u+QnxJz7Nourod50tgGLJnbkxFtlwZ9kZCeOuKMqsVU", 1),
-  ("user", "user@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$qGPJ6S562z9Q5QdRofVwHA$A8FfFR/AHnEwcacjigTg3e+8Ii4Jwpz8SAwMuuWLBnU", 2),
-  ("artist", "artist@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$6ZC41p/mMjkv7qFP+O4PdA$TKImI/0VBwUgEGBljVf09QXd/NnH3Cgb28vFsFLSQgo", 3);
+  ("anthony", "admin@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$z+/VAgYwr9Txeqaob/tpPw$u+QnxJz7Nourod50tgGLJnbkxFtlwZ9kZCeOuKMqsVU", 1),
+  ("nabil", "user@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$qGPJ6S562z9Q5QdRofVwHA$A8FfFR/AHnEwcacjigTg3e+8Ii4Jwpz8SAwMuuWLBnU", 2),
+  ("frank", "artist@eart.com", "$argon2id$v=19$m=65536,t=3,p=4$6ZC41p/mMjkv7qFP+O4PdA$TKImI/0VBwUgEGBljVf09QXd/NnH3Cgb28vFsFLSQgo", 3);
 
 CREATE TABLE oeuvre (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
@@ -42,8 +42,8 @@ CREATE TABLE oeuvre (
 
 INSERT INTO oeuvre(image, title, dimension, description, year, medium, user_id)
 VALUES
-("../public/assets/images/Starry_Night.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
-("../public/assets/images/mountain.jpg", "Go wild", "4000 cm * 2670 cm", "Go wild is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 3);
+("pawn.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
+("pawn.jpg", "Go wild", "4000 cm * 2670 cm", "Go wild is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 3);
 
 CREATE TABLE user_oeuvre (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,

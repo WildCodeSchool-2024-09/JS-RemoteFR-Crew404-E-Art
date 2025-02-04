@@ -2,7 +2,6 @@ import ReactDOM from "react-dom/client";
 import { RouterProvider, createBrowserRouter } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import { AuthProvider } from "./context/AuthContext";
-import fakeArtworks from "./services/fakeArtworks";
 
 import App from "./App";
 import About from "./pages/About/About";
@@ -22,6 +21,7 @@ import { StrictMode } from "react";
  */
 import Artwork from "./components/Artwork/Artwork";
 import AddArtwork from "./pages/AddArtwork/AddArtwork";
+import { api } from "./services/api";
 
 const router = createBrowserRouter([
   {
@@ -31,6 +31,15 @@ const router = createBrowserRouter([
       {
         path: "/",
         element: <Home />,
+        loader: async () => {
+          try {
+            const response = await api.get("/api/oeuvres");
+            return response.data;
+          } catch (error) {
+            console.error(error);
+            return null;
+          }
+        },
       },
       {
         path: "/contact",
@@ -60,16 +69,14 @@ const router = createBrowserRouter([
         path: "/artwork-page/:id",
         element: <Artwork />,
         loader: async ({ params }) => {
-          const artwork = fakeArtworks.find(
-            (artwork) => artwork.id === Number.parseInt(params.id ?? "0"),
-          );
+          try {
+            const reponse = await api.get(`/api/oeuvres/${params.id}`);
 
-          if (artwork) {
-            return {
-              artwork,
-            };
+            return reponse.data;
+          } catch (error) {
+            console.error(error);
+            return null;
           }
-          return null;
         },
       },
       {
