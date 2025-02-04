@@ -4,6 +4,14 @@ import Button from "../../components/Button/Button";
 import "./Register.css";
 
 function Register() {
+  const [password, setPassword] = useState("");
+  const [isValid, setIsValid] = useState(false);
+
+  const validatePassword = (pwd: string) => {
+    const regex = /^(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+    return regex.test(pwd);
+  };
+
   const [register, setRegister] = useState({
     name: "",
     email: "",
@@ -13,6 +21,10 @@ function Register() {
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
+    if (name === "password") {
+      setPassword(value);
+      setIsValid(validatePassword(value));
+    }
     setRegister((prev) => ({
       ...prev,
       [name]: value,
@@ -76,9 +88,15 @@ function Register() {
             name="password"
             placeholder="************"
             required
+            value={password}
             onChange={handleChange}
             className="register_input"
           />
+          <p style={{ color: isValid ? "green" : "red" }}>
+            {isValid
+              ? "Mot de passe sécurisé"
+              : "(8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial)"}
+          </p>
         </div>
         <br />
         <div>

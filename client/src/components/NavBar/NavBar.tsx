@@ -5,7 +5,11 @@ import Button from "../Button/Button";
 import MenuBurger from "../Menu/MenuBurger";
 import "./NavBar.css";
 
+import { useAuth } from "../../context/AuthContext";
+
 function NavBar() {
+  const { user, handleLogout } = useAuth();
+
   return (
     <nav className="navbar">
       <img className="logo" src={logo_art} alt="La tête d'un objet d'art" />
@@ -21,19 +25,31 @@ function NavBar() {
           <Link to="/about">A propos</Link>
         </li>
       </ul>
-      <ul className="navbar-links-connection">
-        <li className="login">
-          <Link to="/login">
-            <CircleUserRound size={28} />
-            Login
-          </Link>
-        </li>
-        <li>
-          <Link to="/register">
-            <Button name="Register" />
-          </Link>
-        </li>
-      </ul>
+
+      {user ? (
+        <ul className="navbar-links-connection">
+          <li className="login">
+            <p>Hello {user.email}</p>
+            <button type="button" onClick={handleLogout}>
+              Logout
+            </button>
+          </li>
+        </ul>
+      ) : (
+        <ul className="navbar-links-connection">
+          <li>
+            <Link to="/login">
+              <CircleUserRound size={28} />
+              Login
+            </Link>
+          </li>
+          <li>
+            <Link to="/register">
+              <Button name="Register" />
+            </Link>
+          </li>
+        </ul>
+      )}
     </nav>
   );
 }
