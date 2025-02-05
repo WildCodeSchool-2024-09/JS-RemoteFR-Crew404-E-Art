@@ -97,12 +97,12 @@ function Register() {
             onChange={handleChange}
             className="register_input"
           />
-          <p style={{ color: isValid ? "green" : "red" }}>
-            {isValid
-              ? "Mot de passe sécurisé"
-              : "(8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial)"}
-          </p>
         </div>
+        <p style={{ color: isValid ? "green" : "red" }}>
+          {isValid
+            ? "Mot de passe sécurisé"
+            : "(8 caractères, 1 majuscule, 1 chiffre et 1 caractère spécial)"}
+        </p>
         <br />
         <div>
           <label className="label_register" htmlFor="confirm_password">

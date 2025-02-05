@@ -33,4 +33,7 @@
   .login_button {
     width: 10rem;
   }
+  .login_input {
+    width: 20rem;
+  }
 }

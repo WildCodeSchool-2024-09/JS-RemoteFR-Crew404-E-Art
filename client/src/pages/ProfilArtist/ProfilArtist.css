@@ -1,0 +1,75 @@
+.profil {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.profilartist_title {
+  margin-right: 25rem;
+  margin-top: 5rem;
+}
+.profil_input {
+  width: 30rem;
+  background-color: var(--third-color);
+  padding: 10px;
+}
+.password_input {
+  width: 14.5rem;
+  background-color: var(--third-color);
+  padding: 10px;
+}
+
+.profil_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+.profil_button {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+  width: 30rem;
+}
+.password_container {
+  display: flex;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+/** disabled input css */
+.profil_form input:disabled {
+  background-color: #d3d3d3;
+}
+
+.profil_button_update {
+  margin-top: 2rem;
+}
+
+@media (max-width: 768px) {
+  .profil_input {
+    width: 18rem;
+  }
+  .profilartist_title {
+    margin-top: 5rem;
+    margin-left: 8rem;
+  }
+  .profil_button {
+    width: 18rem;
+  }
+  .password_input {
+    width: 8rem;
+    margin-left: 1rem;
+  }
+  .password_container {
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .label_password {
+    margin-left: 1rem;
+  }
+}

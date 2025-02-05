@@ -25,11 +25,11 @@
 }
 @media (max-width: 768px) {
   .register_input {
-    width: 10rem;
+    width: 21rem;
   }
   .register_title {
     margin-top: 5rem;
-    margin-left: 21rem;
+    margin-left: 10rem;
   }
   .register_button {
     width: 10rem;

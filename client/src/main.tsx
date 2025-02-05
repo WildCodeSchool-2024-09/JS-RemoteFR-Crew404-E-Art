@@ -21,6 +21,7 @@ import { StrictMode } from "react";
  */
 import Artwork from "./components/Artwork/Artwork";
 import AddArtwork from "./pages/AddArtwork/AddArtwork";
+import ProfilArtist from "./pages/ProfilArtist/ProfilArtist";
 import { api } from "./services/api";
 
 const router = createBrowserRouter([
@@ -60,6 +61,10 @@ const router = createBrowserRouter([
       {
         path: "/profil",
         element: <Profil />,
+      },
+      {
+        path: "/profil-artist",
+        element: <ProfilArtist />,
       },
       {
         path: "/artwork-page",

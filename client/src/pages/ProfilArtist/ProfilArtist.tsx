@@ -1,11 +1,11 @@
 import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
-import "./Profil.css";
+import "./ProfilArtist.css";
 
-function Profil() {
+function ProfilArtist() {
   return (
     <section className="profil">
-      <h1 className="profil_title">Profil</h1>
+      <h1 className="profilartist_title">Profil</h1>
       <form className="profil_form">
         <div>
           <label className="label_profil" htmlFor="name">
@@ -70,8 +70,8 @@ function Profil() {
         <div className="profil_button">
           <span>I'm an artist</span>
           <div>
-            <Link to={"/profil-artist"}>
-              <Button name="Invitation request" type="button" />
+            <Link to={"/artwork-page"}>
+              <Button name="Add artwork" type="button" />
             </Link>
           </div>
           <div className="profil_button_update">
@@ -83,4 +83,4 @@ function Profil() {
   );
 }
 
-export default Profil;
+export default ProfilArtist;
