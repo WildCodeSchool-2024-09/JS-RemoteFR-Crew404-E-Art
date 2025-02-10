@@ -16,11 +16,14 @@ import Profil from "./pages/Profil/Profil";
 import Register from "./pages/Register/Register";
 
 import { StrictMode } from "react";
+import AdminRoute from "./components/AdminRoute";
 /**
  * Components
  */
 import Artwork from "./components/Artwork/Artwork";
+import ProtectedRoute from "./components/ProtectedRoute";
 import AddArtwork from "./pages/AddArtwork/AddArtwork";
+import Admin from "./pages/Admin/Admin";
 import { api } from "./services/api";
 
 const router = createBrowserRouter([
@@ -35,6 +38,20 @@ const router = createBrowserRouter([
           try {
             const response = await api.get("/api/oeuvres");
             return response.data;
+          } catch (error) {
+            console.error(error);
+            return null;
+          }
+        },
+      },
+      {
+        path: "/artwork-page/:id",
+        element: <Artwork />,
+        loader: async ({ params }) => {
+          try {
+            const reponse = await api.get(`/api/oeuvres/${params.id}`);
+
+            return reponse.data;
           } catch (error) {
             console.error(error);
             return null;
@@ -58,26 +75,35 @@ const router = createBrowserRouter([
         element: <Register />,
       },
       {
-        path: "/profil",
-        element: <Profil />,
+        element: <ProtectedRoute />,
+        children: [
+          {
+            path: "/profil",
+            element: <Profil />,
+          },
+          {
+            path: "/artwork-page",
+            element: <AddArtwork />,
+          },
+        ],
       },
       {
-        path: "/artwork-page",
-        element: <AddArtwork />,
-      },
-      {
-        path: "/artwork-page/:id",
-        element: <Artwork />,
-        loader: async ({ params }) => {
-          try {
-            const reponse = await api.get(`/api/oeuvres/${params.id}`);
-
-            return reponse.data;
-          } catch (error) {
-            console.error(error);
-            return null;
-          }
-        },
+        element: <AdminRoute />,
+        children: [
+          {
+            path: "/admin/dashboard",
+            element: <Admin />,
+            loader: async () => {
+              try {
+                const response = await api.get("/api/admin");
+                return response.data;
+              } catch (error) {
+                console.error(error);
+                return null;
+              }
+            },
+          },
+        ],
       },
       {
         path: "*",

@@ -24,7 +24,7 @@ const register: RequestHandler = async (req, res, next) => {
 const login: RequestHandler = async (req, res, next) => {
   try {
     if (req.user) {
-      const { password, role_id, ...userWithoutSensitiveInfo } = req.user;
+      const { password, ...userWithoutSensitiveInfo } = req.user;
       const token = jwtMiddleware.createToken(userWithoutSensitiveInfo);
       res.cookie("jwtToken", token).status(200).json(userWithoutSensitiveInfo);
     }

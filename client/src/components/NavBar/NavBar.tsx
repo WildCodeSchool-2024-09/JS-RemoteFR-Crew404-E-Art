@@ -1,4 +1,4 @@
-import { CircleUserRound, LogOut } from "lucide-react";
+import { CircleUserRound, LockIcon, LogOut } from "lucide-react";
 import { Link } from "react-router-dom";
 import logo_art from "../../assets/images/logo_art.png";
 import Button from "../Button/Button";
@@ -47,6 +47,14 @@ function NavBar() {
             <Link to="/register">
               <Button name="Register" />
             </Link>
+          </li>
+        </ul>
+      )}
+      {user && user.role_id === 1 && (
+        <ul className="navbar-links-connection">
+          <li className="admin-link">
+            <LockIcon size={28} />
+            <Link to="/admin/dashboard">Admin</Link>
           </li>
         </ul>
       )}

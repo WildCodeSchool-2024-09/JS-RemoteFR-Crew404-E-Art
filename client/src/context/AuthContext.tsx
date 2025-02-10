@@ -16,6 +16,7 @@ type User = {
   id: number;
   email: string;
   name: string;
+  role_id: number;
 };
 
 export function AuthProvider({ children }: ChildrenType) {
