@@ -1,4 +1,3 @@
-import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
 import "./Profil.css";
 
@@ -70,9 +69,7 @@ function Profil() {
         <div className="profil_button">
           <span>I'm an artist</span>
           <div>
-            <Link to={"/profil-artist"}>
-              <Button name="Invitation request" type="button" />
-            </Link>
+            <Button name="Invitation request" type="button" />
           </div>
           <div className="profil_button_update">
             <Button name="Update profil" type="button" />
