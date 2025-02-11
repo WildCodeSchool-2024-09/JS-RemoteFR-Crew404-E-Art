@@ -12,8 +12,9 @@ CREATE TABLE user (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
   name VARCHAR(50) NOT NULL,
   email VARCHAR(255) NOT NULL UNIQUE,
-  password VARCHAR(255) NOT NULL,
-  role_id INT UNSIGNED DEFAULT 2,
+  password VARCHAR(500) NOT NULL,
+  created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+  role_id INT UNSIGNED NOT NULL DEFAULT 2,
   CONSTRAINT fk_user_role
   FOREIGN KEY (role_id) REFERENCES role(id)
 );
@@ -58,3 +59,13 @@ INSERT INTO user_oeuvre(user_id, oeuvre_id)
 VALUES
 (3, 1),
 (3, 2);
+
+CREATE TABLE artist_request (
+  id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,
+  user_id INT UNSIGNED NOT NULL UNIQUE,
+  status BOOLEAN DEFAULT 0,
+  CONSTRAINT fk_artist_request_user FOREIGN KEY (user_id) REFERENCES user(id)
+);
+
+INSERT INTO artist_request(user_id) VALUES
+(2);
