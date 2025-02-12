@@ -13,6 +13,7 @@ type User = {
 };
 function TableUser({ users }: { users: User[] }) {
   const [request, setRequest] = useState<{ user_id: number }[]>([]);
+  const [usersList, setUsersList] = useState(users);
   useEffect(() => {
     const fetchRequest = async () => {
       try {
@@ -28,7 +29,16 @@ function TableUser({ users }: { users: User[] }) {
   const handleAcceptRequest = async (id: number) => {
     try {
       await api.put(`/api/request/${id}`);
+
+      // Supprime la requête de la liste
       setRequest(request.filter((req) => req.user_id !== id));
+
+      // Met à jour le rôle de l'utilisateur dans usersList
+      setUsersList((prevUsers) =>
+        prevUsers.map(
+          (user) => (user.id === id ? { ...user, role_id: 3 } : user), // 3 = Artist
+        ),
+      );
     } catch (error) {
       console.error(error);
     }
@@ -46,7 +56,7 @@ function TableUser({ users }: { users: User[] }) {
         </tr>
       </thead>
       <tbody>
-        {users.map((user) => (
+        {usersList.map((user) => (
           <tr key={user.id}>
             <td>{user.name}</td>
             <td>{user.email}</td>
@@ -67,15 +77,15 @@ function TableUser({ users }: { users: User[] }) {
                   <Crown size={24} />
                   <span className="tooltiptext">Admin</span>
                 </div>
-              ) : user.role_id === 3 ? (
-                <div className="artist tooltip">
-                  <ThumbsUp size={24} />
-                  <span className="tooltiptext">Artist</span>
-                </div>
-              ) : (
+              ) : user.role_id === 2 ? (
                 <div className="user tooltip">
                   <X size={24} />
                   <span className="tooltiptext">User</span>
+                </div>
+              ) : (
+                <div className="artist tooltip">
+                  <ThumbsUp size={24} />
+                  <span className="tooltiptext">Artist</span>
                 </div>
               )}
             </td>

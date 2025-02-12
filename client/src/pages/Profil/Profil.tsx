@@ -3,6 +3,7 @@ import Button from "../../components/Button/Button";
 import { api } from "../../services/api";
 import { failureToast, infoToast, successToast } from "../../services/toasts";
 import "./Profil.css";
+import { Link } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
 
 function Profil() {
@@ -158,7 +159,7 @@ function Profil() {
                   ownStyle="invitation-btn"
                 />
               </span>
-            ) : (
+            ) : user?.role_id === 2 ? (
               <div>
                 <Button
                   name="Invitation request"
@@ -166,6 +167,16 @@ function Profil() {
                   ownStyle="invitation-btn"
                 />
               </div>
+            ) : (
+              <span className="request_sent">
+                <Link to="/artwork-page">
+                  <Button
+                    name="Add artwork"
+                    type="button"
+                    ownStyle="invitation-btn"
+                  />
+                </Link>
+              </span>
             )
           }
 
