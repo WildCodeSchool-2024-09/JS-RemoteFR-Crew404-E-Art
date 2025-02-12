@@ -20,11 +20,13 @@ const router = express.Router();
 import authMiddleware from "./middlewares/authMiddleware";
 import oeuvreMiddleware from "./middlewares/oeuvreMiddleware";
 
+import adminActions from "./modules/admin/adminActions";
 /* ************************************************************************* */
 // Actions
 /* ************************************************************************* */
 import authActions from "./modules/auth/authActions";
 import oeuvreActions from "./modules/oeuvre/oeuvreActions";
+import userActions from "./modules/user/userActions";
 
 /**
  * Login, Register, Logout
@@ -49,6 +51,20 @@ router.post("/api/logout", authActions.logout);
  * oeuvres
  */
 router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
+
+/**
+ * Send request artist
+ */
+
+router.post("/api/request", userActions.sendRequest);
+router.get("/api/request", userActions.browseRequest);
+router.put("/api/request/:id", userActions.acceptRequest);
+/**
+ * Admin
+ */
+
+router.get("/api/admin/", adminActions.browseAdmin);
+router.get("/api/admin/:id", adminActions.readAdmin);
 
 /* ************************************************************************* */
 

@@ -8,4 +8,8 @@ const failureToast = (message: string) => {
   toast.error(message);
 };
 
-export { successToast, failureToast };
+const infoToast = (message: string) => {
+  toast.info(message);
+};
+
+export { successToast, failureToast, infoToast };
