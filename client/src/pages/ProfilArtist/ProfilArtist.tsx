@@ -12,14 +12,7 @@ function ProfilArtist() {
             Name
           </label>
           <br />
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value="joy"
-            checked
-            className="profil_input"
-          />
+          <input type="text" id="name" name="name" className="profil_input" />
         </div>
         <br />
         <div>
@@ -31,9 +24,7 @@ function ProfilArtist() {
             type="email"
             id="email"
             name="email"
-            value="luke@yahoo.com"
             className="profil_input"
-            disabled
           />
         </div>
         <br />

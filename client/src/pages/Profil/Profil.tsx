@@ -1,5 +1,6 @@
 import Button from "../../components/Button/Button";
 import "./Profil.css";
+import { Link } from "react-router-dom";
 
 function Profil() {
   return (
@@ -11,14 +12,7 @@ function Profil() {
             Name
           </label>
           <br />
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value="joy"
-            checked
-            className="profil_input"
-          />
+          <input type="text" id="name" name="name" className="profil_input" />
         </div>
         <br />
         <div>
@@ -30,9 +24,7 @@ function Profil() {
             type="email"
             id="email"
             name="email"
-            value="luke@yahoo.com"
             className="profil_input"
-            disabled
           />
         </div>
         <br />
@@ -69,7 +61,10 @@ function Profil() {
         <div className="profil_button">
           <span>I'm an artist</span>
           <div>
-            <Button name="Invitation request" type="button" />
+            <Link to="/profil-artist">
+              {" "}
+              <Button name="Invitation request " type="button" />{" "}
+            </Link>
           </div>
           <div className="profil_button_update">
             <Button name="Update profil" type="button" />
