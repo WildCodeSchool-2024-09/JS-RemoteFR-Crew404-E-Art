@@ -7,7 +7,7 @@
 }
 
 .contact_title {
-  margin-right: 25rem;
+  margin-right: 20rem;
   margin-top: 5rem;
 }
 
@@ -39,9 +39,12 @@ textarea {
   }
   .contact_title {
     margin-top: 5rem;
-    margin-left: 20rem;
+    margin-left: 17rem;
   }
   .contact_button {
+    width: 10rem;
+  }
+  textarea {
     width: 10rem;
   }
 }
