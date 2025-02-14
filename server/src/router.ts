@@ -65,6 +65,7 @@ router.put("/api/request/:id", userActions.acceptRequest);
 
 router.get("/api/admin/", adminActions.browseAdmin);
 router.get("/api/admin/:id", adminActions.readAdmin);
+router.delete("/api/admin/:id", adminActions.destroyAdmin);
 
 /* ************************************************************************* */
 

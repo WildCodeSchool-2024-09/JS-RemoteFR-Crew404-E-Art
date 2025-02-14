@@ -55,6 +55,15 @@ class oeuvreRepository {
 
     return rows as Oeuvre[];
   }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "delete from oeuvre where id = ?",
+      [id],
+    );
+
+    return result;
+  }
 }
 
 export default new oeuvreRepository();
