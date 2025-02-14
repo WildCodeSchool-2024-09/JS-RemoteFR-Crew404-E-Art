@@ -5,18 +5,22 @@ import { useState } from "react";
 import { api } from "../../../services/api";
 
 function TableArtwork({ artworks }: { artworks: Oeuvre[] }) {
-  const [artworkList, setArtworkList] = useState(artworks);
-
+  // Je copie le state de mon tableau d'oeuvres
+  const [artworksAdmin, setArtworksAdmin] = useState<Oeuvre[]>(artworks);
   const handleDelete = (id: number) => {
-    setArtworkList((prevArtworks) =>
-      prevArtworks.map((artwork) =>
-        artwork.id === id
-          ? { ...artwork, title: "", author: "", image: "", year: 0 }
-          : artwork,
-      ),
+    // J'utilise ma route API pour delete mon oeuvre
+    api.delete(`/api/admin/${id}?q=oeuvres`);
+
+    /**
+     * Ensuite, grâce à la méthode filter, je crée un nouveau tableau
+     * sans mon oeuvre supprimée.
+     */
+    const newArtworks: Oeuvre[] = artworksAdmin.filter(
+      (artwork: Oeuvre) => artwork.id !== id,
     );
-    const response = api.post("/api/admin", artworkList);
-    return response;
+
+    // Je mets à jour mon state avec mon nouveau tableau
+    setArtworksAdmin(newArtworks);
   };
 
   return (
@@ -31,14 +35,16 @@ function TableArtwork({ artworks }: { artworks: Oeuvre[] }) {
         </tr>
       </thead>
       <tbody>
-        {artworkList.map((artwork) => (
+        {artworksAdmin.map((artwork) => (
           <tr key={artwork.id}>
             <td>{artwork.title}</td>
             <td>{artwork.author || "Unknown"}</td>
             <td>
               {artwork.image ? (
                 <img
-                  src={`${import.meta.env.VITE_API_URL}/uploads/${artwork.image}`}
+                  src={`${
+                    import.meta.env.VITE_API_URL
+                  }/uploads/${artwork.image}`}
                   className="img-fluid"
                   alt={artwork.title}
                 />
