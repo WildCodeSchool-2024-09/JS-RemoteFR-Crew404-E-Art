@@ -35,7 +35,12 @@ const destroyAdmin: RequestHandler = async (req, res, next) => {
   try {
     if (req.query.q === "oeuvres") {
       const oeuvres = await oeuvreRepository.delete(+req.params.id);
-      res.sendStatus(204);
+      res.sendStatus(204).json({ message: "oeuvre deleted successfully" });
+      return;
+    }
+    if (req.query.q === "users") {
+      const users = await userRepository.delete(+req.params.id);
+      res.sendStatus(204).json({ message: "Request deleted successfully" });
       return;
     }
   } catch (error) {

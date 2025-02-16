@@ -59,6 +59,7 @@ router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
 router.post("/api/request", userActions.sendRequest);
 router.get("/api/request", userActions.browseRequest);
 router.put("/api/request/:id", userActions.acceptRequest);
+router.delete("/api/request/:id", adminActions.destroyAdmin);
 /**
  * Admin
  */

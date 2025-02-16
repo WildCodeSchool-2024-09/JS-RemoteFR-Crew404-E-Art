@@ -57,6 +57,15 @@ class UserRepository {
     );
     return result;
   }
+
+  async delete(id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "delete from artist_request where id = ?",
+      [id],
+    );
+
+    return result;
+  }
 }
 
 export default new UserRepository();
