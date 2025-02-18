@@ -2,6 +2,7 @@ import { Crown, Pencil, Send, ThumbsUp, Trash2, X } from "lucide-react";
 import "./TableUser.css";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { failureToast, successToast } from "../../../services/toasts";
 
 type User = {
   id: number;
@@ -40,6 +41,18 @@ function TableUser({ users }: { users: User[] }) {
         ),
       );
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      await api.delete(`/api/request/${id}?q=users`);
+      const arrayWithouUserId = usersList.filter((user) => user.id !== id);
+      setUsersList(arrayWithouUserId);
+      successToast("user est bien supprimé");
+    } catch (error) {
+      failureToast("Oups, une erreur est survenu");
       console.error(error);
     }
   };
@@ -93,7 +106,11 @@ function TableUser({ users }: { users: User[] }) {
               <button type="button" className="edit">
                 <Pencil size={24} />
               </button>
-              <button type="button" className="delete">
+              <button
+                type="button"
+                className="delete"
+                onClick={() => handleDelete(user.id)}
+              >
                 <Trash2 size={24} />
               </button>
             </td>

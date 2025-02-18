@@ -7,6 +7,7 @@ type User = {
   name: string;
   email: string;
   password: string;
+  role_id: number;
 };
 
 class UserRepository {
@@ -60,12 +61,19 @@ class UserRepository {
 
   async delete(id: number) {
     const [result] = await databaseClient.query<Result>(
-      "delete from artist_request where id = ?",
+      "delete from user where id = ?",
       [id],
     );
 
     return result;
   }
-}
 
+  async update(user: User, role_id: number) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE user SET role_id = ? WHERE id = ?",
+      [role_id, user.id],
+    );
+    return result.affectedRows;
+  }
+}
 export default new UserRepository();

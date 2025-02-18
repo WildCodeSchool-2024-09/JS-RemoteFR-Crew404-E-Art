@@ -60,6 +60,7 @@ router.post("/api/request", userActions.sendRequest);
 router.get("/api/request", userActions.browseRequest);
 router.put("/api/request/:id", userActions.acceptRequest);
 router.delete("/api/request/:id", adminActions.destroyAdmin);
+
 /**
  * Admin
  */
@@ -67,6 +68,7 @@ router.delete("/api/request/:id", adminActions.destroyAdmin);
 router.get("/api/admin/", adminActions.browseAdmin);
 router.get("/api/admin/:id", adminActions.readAdmin);
 router.delete("/api/admin/:id", adminActions.destroyAdmin);
+router.put("/api/admin/:id", adminActions.editUserAdmin);
 
 /* ************************************************************************* */
 
