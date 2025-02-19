@@ -38,6 +38,29 @@ function TableArtwork({
     }
   };
 
+  const handleEditArtwork = async (id: number) => {
+    try {
+      if (confirm("Êtes-vous sûr de vouloir faire des modifications ?")) {
+        setArtworksAdmin((prevArtworksAdmin) =>
+          prevArtworksAdmin.map((artworkAdmin) =>
+            artworkAdmin.id === id
+              ? { ...artworkAdmin, title: "", year: 0 }
+              : artworkAdmin,
+          ),
+        );
+
+        await api.put(`/api/admin/oeuvre/${id}`, artworksAdmin);
+
+        successToast("Modification à jour !");
+      } else {
+        alert("Action annulée.");
+      }
+    } catch (error) {
+      failureToast("Oups, une erreur est survenue");
+      console.error(error);
+    }
+  };
+
   return (
     <table className="artworks-table">
       <thead>
@@ -99,7 +122,11 @@ function TableArtwork({
                 </td>
                 <td>{artwork.year}</td>
                 <td className="actions">
-                  <button type="button" className="edit">
+                  <button
+                    type="button"
+                    className="edit"
+                    onClick={() => handleEditArtwork(artwork.id)}
+                  >
                     <Pencil size={24} />
                   </button>
                   <button
