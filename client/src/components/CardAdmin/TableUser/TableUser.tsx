@@ -47,12 +47,16 @@ function TableUser({ users }: { users: User[] }) {
 
   const handleDelete = async (id: number) => {
     try {
-      await api.delete(`/api/request/${id}?q=users`);
-      const arrayWithouUserId = usersList.filter((user) => user.id !== id);
-      setUsersList(arrayWithouUserId);
-      successToast("user est bien supprimé");
+      if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+        await api.delete(`/api/request/${id}?q=users`);
+        const arrayWithoutUserId = usersList.filter((user) => user.id !== id);
+        setUsersList(arrayWithoutUserId);
+        successToast("Utilisateur bien supprimé !");
+      } else {
+        alert("Action annulée.");
+      }
     } catch (error) {
-      failureToast("Oups, une erreur est survenu");
+      failureToast("Oups, une erreur est survenue");
       console.error(error);
     }
   };
