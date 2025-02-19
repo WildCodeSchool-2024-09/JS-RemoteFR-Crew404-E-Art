@@ -49,6 +49,10 @@
   margin-top: 2rem;
 }
 
+.my_artworks {
+  margin: 2rem 0;
+}
+
 @media (max-width: 768px) {
   .profil_input {
     width: 18rem;

@@ -53,18 +53,27 @@ router.post("/api/logout", authActions.logout);
 router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
 
 /**
+ * users
+ */
+router.get("/api/users/artworks", userActions.browseUserArtwork);
+
+/**
  * Send request artist
  */
 
 router.post("/api/request", userActions.sendRequest);
 router.get("/api/request", userActions.browseRequest);
 router.put("/api/request/:id", userActions.acceptRequest);
+router.delete("/api/request/:id", adminActions.destroyAdmin);
+
 /**
  * Admin
  */
 
 router.get("/api/admin/", adminActions.browseAdmin);
 router.get("/api/admin/:id", adminActions.readAdmin);
+router.delete("/api/admin/:id", adminActions.destroyAdmin);
+router.put("/api/admin/:id", adminActions.editUserAdmin);
 
 /* ************************************************************************* */
 

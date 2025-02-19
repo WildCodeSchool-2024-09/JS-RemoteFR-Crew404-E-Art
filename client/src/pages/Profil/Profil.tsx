@@ -1,14 +1,17 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import Button from "../../components/Button/Button";
+import TableArtwork from "../../components/CardAdmin/TableArtwork/TableArtwork";
+import { useAuth } from "../../context/AuthContext";
 import { api } from "../../services/api";
 import { failureToast, infoToast, successToast } from "../../services/toasts";
+
 import "./Profil.css";
-import { Link } from "react-router-dom";
-import { useAuth } from "../../context/AuthContext";
 
 function Profil() {
   const { user } = useAuth();
   const [request, setRequest] = useState<{ user_id: number } | null>(null);
+  const [artworks, setArtworks] = useState([]);
   const [updateUser, setUpdateUser] = useState({
     name: user?.name,
     password: "",
@@ -32,7 +35,17 @@ function Profil() {
         console.error(error);
       }
     };
+    const fetchArtworks = async () => {
+      try {
+        const response = await api.get("/api/users/artworks");
+        setArtworks(response.data);
+      } catch (err) {
+        console.error(err);
+      }
+    };
+
     fetchRequest();
+    fetchArtworks();
   }, [user?.id]);
 
   const verifyPassword = (password: string, confirmPassword: string) => {
@@ -185,6 +198,16 @@ function Profil() {
           </div>
         </div>
       </form>
+      <div className="my_artworks">
+        {artworks.length === 0 ? (
+          ""
+        ) : (
+          <>
+            <h2>My Artworks</h2>
+            <TableArtwork artworks={artworks} />
+          </>
+        )}
+      </div>
     </section>
   );
 }

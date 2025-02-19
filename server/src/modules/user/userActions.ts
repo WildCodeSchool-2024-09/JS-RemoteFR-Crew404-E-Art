@@ -33,4 +33,18 @@ const acceptRequest: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { sendRequest, browseRequest, acceptRequest };
+const browseUserArtwork: RequestHandler = async (req, res, next) => {
+  try {
+    if (!req.user) {
+      throw new Error("User not found");
+    }
+
+    const response = await userRepository.getUserArtwork(req.user.id);
+
+    res.json(response);
+  } catch (err) {
+    next(err);
+  }
+};
+
+export default { sendRequest, browseRequest, acceptRequest, browseUserArtwork };

@@ -1,7 +1,8 @@
-import { Crown, Pencil, Send, ThumbsUp, Trash2, X } from "lucide-react";
+import { Crown, Send, ThumbsUp, Trash2, UserMinus, X } from "lucide-react";
 import "./TableUser.css";
 import { useEffect, useState } from "react";
 import { api } from "../../../services/api";
+import { failureToast, successToast } from "../../../services/toasts";
 
 type User = {
   id: number;
@@ -11,9 +12,11 @@ type User = {
   created_at: string;
   role_id: number;
 };
+
 function TableUser({ users }: { users: User[] }) {
   const [request, setRequest] = useState<{ user_id: number }[]>([]);
   const [usersList, setUsersList] = useState(users);
+
   useEffect(() => {
     const fetchRequest = async () => {
       try {
@@ -40,6 +43,44 @@ function TableUser({ users }: { users: User[] }) {
         ),
       );
     } catch (error) {
+      console.error(error);
+    }
+  };
+
+  const handleDelete = async (id: number) => {
+    try {
+      if (confirm("Êtes-vous sûr de vouloir supprimer cet utilisateur ?")) {
+        await api.delete(`/api/request/${id}?q=users`);
+        const arrayWithoutUserId = usersList.filter((user) => user.id !== id);
+        setUsersList(arrayWithoutUserId);
+        successToast("Utilisateur bien supprimé !");
+      } else {
+        alert("Action annulée.");
+      }
+    } catch (error) {
+      failureToast("Oups, une erreur est survenue");
+      console.error(error);
+    }
+  };
+
+  const handleDowngradeRole = async (id: number) => {
+    try {
+      if (
+        confirm("Êtes-vous sûr de vouloir modifier le role de l'utilisateur ?")
+      ) {
+        await api.put(`/api/admin/${id}`);
+        successToast("Le role bien modifier !");
+        // Met à jour le rôle de l'utilisateur dans usersList
+        setUsersList((prevUsers) =>
+          prevUsers.map(
+            (user) => (user.id === id ? { ...user, role_id: 2 } : user), // 2 = User
+          ),
+        );
+      } else {
+        alert("Action annulée.");
+      }
+    } catch (error) {
+      failureToast("Oups, une erreur est survenue");
       console.error(error);
     }
   };
@@ -90,10 +131,18 @@ function TableUser({ users }: { users: User[] }) {
               )}
             </td>
             <td className="actions">
-              <button type="button" className="edit">
-                <Pencil size={24} />
+              <button
+                type="button"
+                className="edit"
+                onClick={() => handleDowngradeRole(user.id)}
+              >
+                <UserMinus size={24} />
               </button>
-              <button type="button" className="delete">
+              <button
+                type="button"
+                className="delete"
+                onClick={() => handleDelete(user.id)}
+              >
                 <Trash2 size={24} />
               </button>
             </td>
