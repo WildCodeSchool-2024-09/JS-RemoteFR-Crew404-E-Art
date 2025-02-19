@@ -4,3 +4,6 @@ coverage
 uploads/*
 !uploads/.gitkeep
 !uploads/pawn.jpg
+!uploads/boat.jpg
+!uploads/pawn1.jpg
+!uploads/toile.jpg

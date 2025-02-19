@@ -44,8 +44,10 @@ CREATE TABLE oeuvre (
 
 INSERT INTO oeuvre(image, title, dimension, description, year, medium, user_id)
 VALUES
-("pawn.jpg", "The Starry Night", "73.7 cm × 92.1 cm", "The Starry Night is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
-("pawn.jpg", "Go wild", "4000 cm * 2670 cm", "Go wild is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 3);
+("pawn.jpg", "The Pawn", "73.7 cm × 92.1 cm", "The Pawn is an oil on canvas by the Dutch post-impressionist painter Vincent van Gogh. Painted in June 1889, it depicts the view from the east-facing window of his asylum room at Saint-Rémy-de-Provence, just before sunrise, with the addition of an ideal village.", "1889", "Oil on canvas", 1),
+("boat.jpg", "Boat", "73.7 cm × 92.1 cm", "Just a boat", "2022", "Oil on canvas", 1),
+("pawn1.jpg", "Growth", "4000 cm * 2670 cm", "Growth is an oil on canvas by the Dutch painter Vincent van Gogh.", "1885", "Oil on canvas", 3),
+("toile.jpg", "Juste une toile", "4000 cm * 2670 cm", "Ici, nous avons la representation d'un toile qui représente toute l'art", "1885", "Oil on canvas", 3);
 
 CREATE TABLE user_oeuvre (
   id INT UNSIGNED PRIMARY KEY AUTO_INCREMENT NOT NULL,

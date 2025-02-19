@@ -17,7 +17,7 @@ function CardAdmin({
       {item === "user" ? (
         <TableUser users={data as User[]} />
       ) : (
-        <TableArtwork artworks={data as Oeuvre[]} isAdmin />
+        <TableArtwork artworks={data as Oeuvre[]} />
       )}
     </section>
   );
