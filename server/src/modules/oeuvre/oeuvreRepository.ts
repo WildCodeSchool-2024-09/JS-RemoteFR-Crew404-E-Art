@@ -64,6 +64,14 @@ class oeuvreRepository {
 
     return result;
   }
+
+  async update(id: number, title: string, year: number) {
+    const [result] = await databaseClient.query<Result>(
+      "UPDATE oeuvre SET title = ?, year = ? WHERE id = ?",
+      [title, year, id],
+    );
+    return result.affectedRows;
+  }
 }
 
 export default new oeuvreRepository();
