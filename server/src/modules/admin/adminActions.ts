@@ -51,14 +51,7 @@ const destroyAdmin: RequestHandler = async (req, res, next) => {
 
 const editUserAdmin: RequestHandler = async (req, res, next) => {
   try {
-    const user = {
-      id: Number(req.params.id),
-      name: req.body.name,
-      email: req.body.email,
-      password: req.body.password,
-      role_id: req.body.role_id,
-    };
-    const affectedRows = await userRepository.update(user, user.role_id);
+    const affectedRows = await userRepository.update(Number(req.params.id), 2);
     if (affectedRows === 0) {
       res.sendStatus(404);
     } else {

@@ -5,9 +5,13 @@ import { useState } from "react";
 import { api } from "../../../services/api";
 import { failureToast, successToast } from "../../../services/toasts";
 
-function TableArtwork({ artworks }: { artworks: Oeuvre[] }) {
+function TableArtwork({
+  artworks,
+  isAdmin,
+}: { artworks: Oeuvre[]; isAdmin?: boolean }) {
   // Je copie le state de mon tableau d'oeuvres
   const [artworksAdmin, setArtworksAdmin] = useState<Oeuvre[]>(artworks);
+
   const handleDelete = async (id: number) => {
     try {
       if (confirm("Êtes-vous sûr de vouloir supprimer cet tabeau ?")) {
@@ -46,38 +50,68 @@ function TableArtwork({ artworks }: { artworks: Oeuvre[] }) {
         </tr>
       </thead>
       <tbody>
-        {artworksAdmin.map((artwork) => (
-          <tr key={artwork.id}>
-            <td>{artwork.title}</td>
-            <td>{artwork.author || "Unknown"}</td>
-            <td>
-              {artwork.image ? (
-                <img
-                  src={`${
-                    import.meta.env.VITE_API_URL
-                  }/uploads/${artwork.image}`}
-                  className="img-fluid"
-                  alt={artwork.title}
-                />
-              ) : (
-                ""
-              )}
-            </td>
-            <td>{artwork.year}</td>
-            <td className="actions">
-              <button type="button" className="edit">
-                <Pencil size={24} />
-              </button>
-              <button
-                type="button"
-                className="delete"
-                onClick={() => handleDelete(artwork.id)}
-              >
-                <Trash2 size={24} />
-              </button>
-            </td>
-          </tr>
-        ))}
+        {isAdmin
+          ? artworksAdmin.map((artwork) => (
+              <tr key={artwork.id}>
+                <td>{artwork.title}</td>
+                <td>{artwork.author || "Unknown"}</td>
+                <td>
+                  {artwork.image ? (
+                    <img
+                      src={`${
+                        import.meta.env.VITE_API_URL
+                      }/uploads/${artwork.image}`}
+                      className="img-fluid"
+                      alt={artwork.title}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>{artwork.year}</td>
+                <td className="actions">
+                  <button
+                    type="button"
+                    className="delete"
+                    onClick={() => handleDelete(artwork.id)}
+                  >
+                    <Trash2 size={24} />
+                  </button>
+                </td>
+              </tr>
+            ))
+          : artworks.map((artwork) => (
+              <tr key={artwork.id}>
+                <td>{artwork.title}</td>
+                <td>Me</td>
+                <td>
+                  {artwork.image ? (
+                    <img
+                      src={`${
+                        import.meta.env.VITE_API_URL
+                      }/uploads/${artwork.image}`}
+                      className="img-fluid"
+                      alt={artwork.title}
+                    />
+                  ) : (
+                    ""
+                  )}
+                </td>
+                <td>{artwork.year}</td>
+                <td className="actions">
+                  <button type="button" className="edit">
+                    <Pencil size={24} />
+                  </button>
+                  <button
+                    type="button"
+                    className="delete"
+                    onClick={() => handleDelete(artwork.id)}
+                  >
+                    <Trash2 size={24} />
+                  </button>
+                </td>
+              </tr>
+            ))}
       </tbody>
     </table>
   );

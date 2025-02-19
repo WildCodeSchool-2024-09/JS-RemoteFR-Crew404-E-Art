@@ -68,12 +68,21 @@ class UserRepository {
     return result;
   }
 
-  async update(user: User, role_id: number) {
+  async update(id: number, role_id: number) {
     const [result] = await databaseClient.query<Result>(
       "UPDATE user SET role_id = ? WHERE id = ?",
-      [role_id, user.id],
+      [role_id, id],
     );
     return result.affectedRows;
+  }
+
+  async getUserArtwork(id: number) {
+    const [rows] = await databaseClient.query<Rows>(
+      "SELECT * FROM oeuvre WHERE user_id = ?",
+      [id],
+    );
+
+    return rows;
   }
 }
 export default new UserRepository();

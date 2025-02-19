@@ -53,6 +53,11 @@ router.post("/api/logout", authActions.logout);
 router.post("/api/oeuvre", oeuvreMiddleware.uploads, oeuvreActions.add);
 
 /**
+ * users
+ */
+router.get("/api/users/artworks", userActions.browseUserArtwork);
+
+/**
  * Send request artist
  */
 
