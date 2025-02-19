@@ -74,6 +74,7 @@ router.get("/api/admin/", adminActions.browseAdmin);
 router.get("/api/admin/:id", adminActions.readAdmin);
 router.delete("/api/admin/:id", adminActions.destroyAdmin);
 router.put("/api/admin/:id", adminActions.editUserAdmin);
+router.put("/api/admin/oeuvre/:id", adminActions.editOeuvreAdmin);
 
 /* ************************************************************************* */
 

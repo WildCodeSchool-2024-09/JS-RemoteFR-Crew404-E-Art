@@ -62,4 +62,28 @@ const editUserAdmin: RequestHandler = async (req, res, next) => {
   }
 };
 
-export default { browseAdmin, readAdmin, destroyAdmin, editUserAdmin };
+const editOeuvreAdmin: RequestHandler = async (req, res, next) => {
+  try {
+    const { title, year } = req.body;
+    const affectedRows = await oeuvreRepository.update(
+      +req.params.id,
+      title,
+      year,
+    );
+    if (affectedRows === 0) {
+      res.sendStatus(404);
+    } else {
+      res.sendStatus(204);
+    }
+  } catch (error) {
+    next(error);
+  }
+};
+
+export default {
+  browseAdmin,
+  readAdmin,
+  destroyAdmin,
+  editUserAdmin,
+  editOeuvreAdmin,
+};
