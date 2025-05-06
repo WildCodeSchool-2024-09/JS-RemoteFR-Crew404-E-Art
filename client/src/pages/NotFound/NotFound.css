@@ -1,0 +1,13 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+.error_title {
+  text-align: center;
+  margin-top: 10rem;
+}
+.error_second_title {
+  text-align: center;
+  margin-top: 4rem;
+}

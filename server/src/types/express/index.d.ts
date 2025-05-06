@@ -9,6 +9,25 @@ declare global {
       //
       // user?: { ... }
       /* ************************************************************************* */
+      // Add user property to Request
+      user?: {
+        id: number;
+        name: string;
+        email: string;
+        password: string;
+        role_id?: number;
+      };
+
+      // Add oeuvre property to Request
+      oeuvre?: {
+        id: number;
+        image: string;
+        title: string;
+        dimension: string;
+        description: string;
+        year: number;
+        medium: string;
+      };
     }
   }
 }

@@ -1,0 +1,37 @@
+.register {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  width: 100%;
+}
+
+.register_title {
+  margin-right: 24rem;
+  margin-top: 5rem;
+}
+.register_input {
+  width: 30rem;
+  background-color: var(--third-color);
+  padding: 10px;
+}
+
+.register_form {
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 3rem;
+}
+@media (max-width: 768px) {
+  .register_input {
+    width: 21rem;
+  }
+  .register_title {
+    margin-top: 5rem;
+    margin-left: 10rem;
+  }
+  .register_button {
+    width: 10rem;
+  }
+}
